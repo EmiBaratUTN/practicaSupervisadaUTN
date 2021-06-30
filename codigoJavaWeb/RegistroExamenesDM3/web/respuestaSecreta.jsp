@@ -17,33 +17,33 @@
         <div class="container">
             <div style="height: 150px; background-color: beige" class="row align-items-center">
                 <div class="col-auto">
-                    <h1>Página de ingreso</h1>
-                    <h3>Sistema de gestión de exámenes - Seccion EduFis</h3>
-                    <h3 style="color: crimson">${msj}</h5>
+                    <h1>Responda la pregunta para ver su contraseña</h1>
+                    
+                    <!--<h5>${msj}</h5>-->
                 </div>
             </div>
             <div style="margin-top: 20px" class="row justify-content-center align-items-center">
                 <div class="col-3"></div>
 
                 <div class="col-4">
-                    <form action="VerificarLogin" method="post" class="form">
-
+                    <form action="VerificarRespuestaSecreta" method="post" class="form">
+                        <input type="hidden" name="txtNombreUsuario" value="${usuario.nombreUsuario}">
                         <div>
-                            <label class="form-label" for="user">Usuario:</label>
-                            <input class="form-control" required="" type="text" name="txtUser" id="user">
-                            <p class="text-danger">${usuarioIncorrecta}</p>
-                            <p class="text-danger">${usuarioBaja}</p>
+                            <label class="form-label" for="respuesta">${usuario.preguntaSecreta}</label>
+                            <input class="form-control" required="" type="text" name="txtRespuestaUser" id="respuesta">
+<!--                            <p class="text-danger">${usuarioIncorrecta}</p>
+                            <p class="text-danger">${usuarioBaja}</p>-->
                         </div>
-                        <div>
+<!--                        <div>
                             <label class="form-label" for="pass">Password:</label>
                             <input class="form-control" required="required" type="password" name="txtPass" id="pass">
                             <p class="text-danger">${contrasenaIncorrecta}</p>
-                        </div>
+                        </div>-->
                         <br>
-                        <input class="form-control btn btn-primary" type="submit" value="Ingresar">
+                        <input class="form-control btn btn-primary" type="submit" value="Validar usuario">
                     </form>
-                    <!--ESTE LINK TIENE QUE LLEVAR A UN LUGAR QUE HAGA LA PREGUNTA PARA RESPUESTA SECRETA-->
-                    <a class="" href="recuperarPassForm.jsp">Olvidó su contraseña??</a>
+                    
+                    
                 </div>
                 <div class="col-3"></div>
             </div>
@@ -51,3 +51,4 @@
         </div>   
     </body>
 </html>
+

@@ -19,7 +19,7 @@
                 <div class="col-auto">
                     <h1>Página de ingreso</h1>
                     <h3>Sistema de gestión de exámenes - Seccion EduFis</h3>
-                    <h5>${msj}</h5>
+                    <h3 style="color: crimson">${msj}</h5>
                 </div>
             </div>
             <div style="margin-top: 20px" class="row justify-content-center align-items-center">
@@ -43,7 +43,7 @@
                         <input class="form-control btn btn-primary" type="submit" value="Ingresar">
                     </form>
                     <!--ESTE LINK TIENE QUE LLEVAR A UN LUGAR QUE HAGA LA PREGUNTA PARA RESPUESTA SECRETA-->
-                    <a class="" href="#">Olvidó su contraseña??</a>
+                    <a class="" href="recuperarPassForm.jsp">Olvidó su contraseña??</a>
                 </div>
                 <div class="col-3"></div>
             </div>
