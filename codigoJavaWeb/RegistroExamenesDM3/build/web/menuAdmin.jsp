@@ -21,6 +21,8 @@
                 <div class="col-8">
                     <h3>Tareas con examenes o alumnos</h3>
                     <p>Desde los listados podrá editar o eliminar un elemento</p>
+                    <p>Para registar un examen el alumno causante debe estar previamente dado de alta</p>
+                    
                     <ul class="nav nav-pills">
                         <li class="nav-item">
                             <a class="nav-link link" href="AltaAlumno" >Alta de Alumno</a>
@@ -29,20 +31,14 @@
                             <a class="nav-link link" href="ListarAlumnos">Listado de alumnos</a>
                         </li>
                         <li class="nav-item">
-                            <!--EL ADMIN DEBERIA PODER MODIFICAR Y HASTA ELIMININAR UN EXAMEN Y SUS PRUEBAS-->
-                            
+                            <a class="nav-link link" href="ListarAlumnos" >Registrar examen</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link link" href="ListarExamenes" >Ver exámenes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link link" href="ListarAlumnosPeso">Ver registro de peso</a>
                         </li>
-                        
-                        <!--ACA IRIA EL ACCESO A LAS ESTADISTICAS-->
-                        
-<!--                        <li class="nav-item">
-                            <a class="nav-link link" href="#">Pesar un alumno</a>
-                        </li>-->
-
                     </ul>
                     
                     <h3>Tareas de administracion del sistema </h3>
@@ -69,7 +65,7 @@
                     </ul>
                 </div>
                 <div class="col-2"></div>
-                <img src="/RegistroExamenesDM3/GraficoTorta"></img>
+                <!--<img src="/RegistroExamenesDM3/GraficoTorta?"></img>-->
             </div>
         </div>
         

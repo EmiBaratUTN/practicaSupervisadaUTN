@@ -19,9 +19,9 @@
     <body>
         <div class="container">
             <div class="row">
-                <h3>Cargo exitósamente el siguente examen</h3>
+                <h3>${msj}</h3>
             </div>
-            <table class="table table-striped">
+<!--            <table class="table table-striped">
 
                 <th>Nro</th>
                 <th>Fecha</th>
@@ -40,13 +40,13 @@
                     <td>${gestor.buscarExamen(idExamen).notaFinal}</td>
                 </tr>
 
-                <!--El examen deberia mostrar el resultado de cada prueba???-->
-                <!--si, pero uso otro metodo en el buscador para traer los datos. en funcion del idExamen-->
+                El examen deberia mostrar el resultado de cada prueba???
+                si, pero uso otro metodo en el buscador para traer los datos. en funcion del idExamen
 
-                <!--Hacer los links de navegacion: volver menu; cargar otro examen; cargar alumno.-->
-            </table>
+                Hacer los links de navegacion: volver menu; cargar otro examen; cargar alumno.
+            </table>-->
 
-            <table class="table table-striped">
+<!--            <table class="table table-striped">
                 <c:forEach items="${gestor.listarPruebasRendidasXIdExamen(idExamen)}" var="item">
                     <tr>
                         <td>${item.nombrePrueba}</td>
@@ -55,9 +55,9 @@
 
                     </tr>
                 </c:forEach>
-            </table>
-
-            <a href="ListarAlumnos" class="btn btn-primary text-center text-light">Volver a listado Alumnos</a>
+            </table>-->
+            <br>
+            <a style="margin-right: 100px" href="ListarAlumnos" class="">Volver a listado Alumnos</a>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>

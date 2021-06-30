@@ -93,16 +93,17 @@
                 <!--////////////btn sumit////////////-->
                 <div class="form-group row">
                     <div class="col-auto">
-                        <input  class="form-control btn btn-primary mb-2" type="submit" value="Editar">
+                        <input  class="btn btn-primary" type="submit" value="Editar">
                     </div>
-                    <div class="col-auto">
+                    <a href="ListarExamenes" class="btn btn-primary">Cancelar</a>
+<!--                    <div class="col-auto">
                         <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                             <a class="btn btn-primary" href="menuAdmin.jsp">Cancelar</a>
                         </c:if>
                         <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                             <a class="btn btn-primary" href="menuUsuario.jsp">Cancelar</a>
                         </c:if>
-                    </div>
+                    </div>-->
 
 
                 </div>

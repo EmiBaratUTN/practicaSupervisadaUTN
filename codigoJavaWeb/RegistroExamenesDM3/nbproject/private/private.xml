@@ -4,14 +4,22 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/EstadoProfesor.java</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/GraficoTorta.java</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/AltaPesajeAlumno.java</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/listadoProfesores.jsp</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/EstadoUsuario.java</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/model/Grado.java</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/AltaProfesor.java</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/confirmarEliminacion.jsp</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/model/DetalleExamen.java</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/menuAdmin.jsp</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/model/Examen.java</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/model/Profesor.java</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/altaAlumno.jsp</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/AltaExamen.java</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/EditarExamen.java</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/ListarProfesores.java</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/altaExamen.jsp</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/controlUsuarios.jsp</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/errorCarga.jsp</file>
             <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/controller/AccesoBaseDatos.java</file>

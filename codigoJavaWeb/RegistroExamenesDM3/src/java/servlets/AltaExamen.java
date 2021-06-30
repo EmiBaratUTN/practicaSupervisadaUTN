@@ -90,31 +90,17 @@ public class AltaExamen extends HttpServlet {
         int tipoExamen = Integer.parseInt(request.getParameter("cmbTipoExamen"));
         int idProfe = Integer.parseInt(request.getParameter("cmbProfesor"));
         String fechaExamen = request.getParameter("dtpFechaExamen");
-
-        //tengo que hacer el insert en tabla 'examen' para obtener un 'idExamen'
-        //para poder llenar el 'detalleExamen'
-        //luego voy a insertar en detalleExamenes un registro por cada campo de resultados de pruebas con dato.
-        //cuando tenga todos los puntajes de las pruebas rendidas voy a promediar los puntajes y hacer un upDate
-        //de el registro examen colocando el promedio.
         String obs = request.getParameter("txtObservaciones");
-
+        int idGenero = Integer.parseInt(request.getParameter("txtIdGenero"));
+        
         Examen e = new Examen(tipoExamen, fechaExamen, idProfe, idAluno, obs, idCateg);
 
         AccesoBaseDatos gestor = new AccesoBaseDatos();
-        
-        
-        
 
-        //OBTENGO EL ID DEL ULTIMO EXAMEN CREADO
-       // int idUltimoExamen = gestor.buscarIdUltimoExamen();
-
-        //Le paso al proximo .jsp el id de examen recien cargado para buscar el Dto y mostar los datos de examen
-        //request.setAttribute("idExamen", idUltimoExamen);
-
-        int idGenero = Integer.parseInt(request.getParameter("txtIdGenero"));
-
-        //PROXIMO PASO TRAER LOS RESULTADOS DE LAS PRUEBAS Y HACER LOS IF()
-        //Y LOS INSERTS POR CADA TRUE!!!
+        //Verefico que los campos del formulario tengan dato.
+        //Si trajo datos: lo incluyo para el promedio final
+        //busco el puntaje correspondiente en MatrizResultados para cada prueba
+        //Añado el detalle de examen de cada prueba en el atributo ArrayList de Examen
         double timeCarrera = 0;
         if (!request.getParameter("txtcarrera3k").trim().equals("")) {
             timeCarrera = Double.parseDouble(request.getParameter("txtcarrera3k"));
@@ -247,13 +233,17 @@ public class AltaExamen extends HttpServlet {
         }
 
         
-        
+        //Al final, para garantizar la atomicidad de la transaccion se hacen todos
+        //los inserts a la BD en un mismo metodo en 'AccesoBaseDatos'
         gestor.registrarExamen(e);
-        //update de la nota final que habia sido cargada en cero
-//        gestor.updateNotaExam(promedio, idUltimoExamen);
-
-        RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
-        rd.forward(request, response);
+        
+        String msj = "Registró correctamente el examen";
+        request.setAttribute("msj", msj);
+        
+        response.sendRedirect("exitoAltaExamen.jsp");
+                
+//        RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
+//        rd.forward(request, response);
 
     }
 

@@ -261,6 +261,9 @@ public class EditarExamen extends HttpServlet {
 
         //update de la nota final que habia sido cargada en cero
         gestor.updateNotaExam(promedio, idExamen);
+        
+        String msj = "Editó correctamente el examen nro: " + idExamen;
+        request.setAttribute("msj", msj);
 
         RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
         rd.forward(request, response);

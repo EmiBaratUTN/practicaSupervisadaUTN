@@ -105,6 +105,7 @@
             </div>
 
             <button type="submit" class="btn btn-success" >Editar</button>
+            <a href="ListarAlumnos" class="btn btn-primary">Cancelar</a>
 
 
         </form>

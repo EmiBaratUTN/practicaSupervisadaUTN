@@ -112,7 +112,7 @@
                         <th colspan="2" class="">Examen</th>
                         <th rowspan="2" style="vertical-align: middle" >Profesor</th>
                         <th rowspan="2" style="vertical-align: middle" >Nota</th>
-                        <th colspan="2" rowspan="2" style="vertical-align: middle; text-align: center " >Acciones</th>
+                        <th colspan="" rowspan="2" style="vertical-align: middle; text-align: center " >Acciones</th>
                     </tr>
                     <tr>
                         <th>Nombre</th>
@@ -130,7 +130,7 @@
 
                 <c:forEach items="${listaExamenes}" var="item">
                     <tr>                            
-                        <td>${item.idExamen}</td>
+                        <td style="vertical-align: middle; text-align: center">${item.idExamen}</td>
                         <td>${item.nombreAlumno}</td>
                         <td>${item.apellidoAlumno}</td>
                         <td>${item.categoria}</td>
@@ -139,8 +139,8 @@
                         <td>${item.apellidoProfe}</td>
                         <td>${item.notaFinal}</td>
 
-                        <td><a class="btn btn-primary" href="EditarExamen?idExamen=${item.idExamen}">Ver/Editar pruebas</a></td>
-                        <td><a class="btn btn-primary" href="EliminarExamen?idExamen=${item.idExamen}">Eliminar Examen</a></td>
+                        <td style="vertical-align: middle; text-align: center"><a class="btn btn-primary" href="EditarExamen?idExamen=${item.idExamen}">Ver/Editar pruebas</a></td>
+<!--                        <td><a class="btn btn-primary" href="EliminarExamen?idExamen=${item.idExamen}">Eliminar Examen</a></td>-->
 
                     </tr>
                 </c:forEach>

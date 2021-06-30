@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="estilos.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,14 +14,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Error!!</h1>
-        <p>${msj}</p>
-        <p>${a.grado}</p>
-        <p>${a.genero}</p>
-        <p>${a.nombres}</p>
-        <p>${a.fechaNacimiento}</p>
-        <p>${categoria.descripcion}</p>
-        <p>${categoria.idCategoria}</p>
-        
+        <div class="container">
+            <h1>Error!!</h1>
+            <p>${msj}</p>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+                <a class="link" href="menuAdmin.jsp">Volver al menu</a>
+            </c:if>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
+                <a class="link" href="menuUsuario.jsp">Volver al menu</a>
+            </c:if>
+            
+        </div>
     </body>
 </html>

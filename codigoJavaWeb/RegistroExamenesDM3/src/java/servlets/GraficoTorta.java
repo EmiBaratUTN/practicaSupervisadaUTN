@@ -50,10 +50,13 @@ public class GraficoTorta extends HttpServlet {
             int fem = cantGenero.get(0);
             int masc = cantGenero.get(1);
             DefaultPieDataset data = new DefaultPieDataset();
+            
             data.setValue("Fem: "+ String.valueOf(fem), fem);
             data.setValue("Masc: "+ String.valueOf(masc), masc);
             
             JFreeChart chart = ChartFactory.createPieChart("Generos", data, true, true, true);
+            
+            
             int ancho = 500;
             int alto = 400;
             
