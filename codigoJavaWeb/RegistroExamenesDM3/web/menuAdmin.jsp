@@ -14,15 +14,21 @@
     </head>
     <body>
         <div class="container">
-            <h2>Menu de Administracion</h2>
-            <h3>Hola ${usuario.nombreUsuario}</h3>
+            <div  class="">
+                <a href="LogOut"  class="btn btn-primary ">Cerrar Sesion</a>
+            </div>
+            <div class="row d-block">
+                <h2>Menu de Administracion</h2>
+                <h3>Hola ${usuario.nombreUsuario}</h3>            
+            </div>
+
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
                     <h3>Tareas con examenes o alumnos</h3>
                     <p>Desde los listados podrá editar o eliminar un elemento</p>
                     <p>Para registar un examen el alumno causante debe estar previamente dado de alta</p>
-                    
+
                     <ul class="nav nav-pills">
                         <li class="nav-item">
                             <a class="nav-link link" href="AltaAlumno" >Alta de Alumno</a>
@@ -40,7 +46,7 @@
                             <a class="nav-link link" href="ListarAlumnosPeso">Ver registro de peso</a>
                         </li>
                     </ul>
-                    
+
                     <h3>Tareas de administracion del sistema </h3>
                     <p>Desde los listados podrá editar o eliminar un elemento</p>
                     <ul class="nav nav-pills">
@@ -57,7 +63,7 @@
                             <a class="nav-link link" href="ControlUsuarios" >Control de Usuarios</a>
                         </li>
                     </ul>
-                    
+
                     <h3>Gráficos y estadísticas</h3>
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a href="#" class="nav-link">Ver gráficos y datos estadísticos</a></li>
@@ -68,6 +74,6 @@
                 <!--<img src="/RegistroExamenesDM3/GraficoTorta?"></img>-->
             </div>
         </div>
-        
+
     </body>
 </html>

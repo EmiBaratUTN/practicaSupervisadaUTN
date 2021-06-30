@@ -55,24 +55,32 @@ public class EditarExamen extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         AccesoBaseDatos gestor = new AccesoBaseDatos();
 //      Obtengo idExamen desde el parametro de la URL
-        int idExamen = Integer.parseInt(request.getParameter("idExamen"));
+
 //      verifico que haya usuario logueado
         HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
+
+        int idExamen = 0;
         if (user != null && !user.getNombreUsuario().equals("")) {
 //            verifico que el usuario tenga los permisos de administrador
             if (user.getTipoUsuario().getIdTipoUsuario() == 1) {
-//              busco el examenDto por ID para llenar el form en el JSP
-                ExamenDto examenDto = gestor.buscarExamen(idExamen);
-                Examen examen = gestor.buscarExamenModel(idExamen);
-                request.setAttribute("examenDto", examenDto);
-                request.setAttribute("examenModel", examen);
-                RequestDispatcher rd = request.getRequestDispatcher("editarExamen.jsp");
-                rd.forward(request, response);
                 
+                if (request.getAttributeNames().hasMoreElements()) {
+                    RequestDispatcher rd = request.getRequestDispatcher("ListarExamenes");
+                    rd.forward(request, response);
+                } else {
+                    idExamen = Integer.parseInt(request.getParameter("idExamen"));
+//              busco el examenDto por ID para llenar el form en el JSP
+
+                    ExamenDto examenDto = gestor.buscarExamen(idExamen);
+                    Examen examen = gestor.buscarExamenModel(idExamen);
+                    request.setAttribute("examenDto", examenDto);
+                    request.setAttribute("examenModel", examen);
+                }
+
             } else {
 //                cuando no tiene los permisos de edicion de examen lo redirijo al listado de examenes con un mensaje
                 String msj = "No tiene permisos para editar un examen. Comunicarse con un administrador";
@@ -86,10 +94,7 @@ public class EditarExamen extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
         }
-        
-        
-        
-        
+
     }
 
     /**
@@ -103,10 +108,10 @@ public class EditarExamen extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
 //        creo un accesoDB
         AccesoBaseDatos gestor = new AccesoBaseDatos();
-        
+
 //        recupero los datos del JSP editarExamen
         int tipoExamen = Integer.parseInt(request.getParameter("cmbTipoExamen"));
         int idExamen = Integer.parseInt(request.getParameter("txtIdExamen"));
@@ -114,18 +119,17 @@ public class EditarExamen extends HttpServlet {
         String fechaExamen = request.getParameter("dtpFechaExamen");
         int idAluno = Integer.parseInt(request.getParameter("txtIdAlumno"));
         String obs = request.getParameter("txtObservaciones");
-        
+
         int idCateg = Integer.parseInt(request.getParameter("txtIdCategoria"));
         int idGenero = gestor.buscarGeneroDeAlumno(idAluno);
-        
+
 //        llamo a metodo de AccesoBaseDatos que hace el update con los parametros a modificar
         gestor.editarDatosExamen(idExamen, tipoExamen, idProfe, fechaExamen, obs);
-        
-//        ahora tengo que hacer el update de los resultados de las pruebas y consecuentemente de las notas parciales y finales
 
+//        ahora tengo que hacer el update de los resultados de las pruebas y consecuentemente de las notas parciales y finales
         int puntajeAcum = 0;
         int cantPruebasRendidas = 0;
-        
+
 //        hago el update en el detalle de examen correspondiente y voy preparando el promedio para el update final a Examen
         double timeCarrera = 0;
         if (!request.getParameter("txtcarrera3k").trim().equals("")) {
@@ -151,7 +155,7 @@ public class EditarExamen extends HttpServlet {
             gestor.editarDetalleExamen(de);
 
         }
-        
+
         double cantFlex = 0;
         String txtFlexiones = request.getParameter("txtflexo-extenciones").trim();
         if (!txtFlexiones.trim().equals("")) {
@@ -261,17 +265,13 @@ public class EditarExamen extends HttpServlet {
 
         //update de la nota final que habia sido cargada en cero
         gestor.updateNotaExam(promedio, idExamen);
-        
+
         String msj = "Editó correctamente el examen nro: " + idExamen;
         request.setAttribute("msj", msj);
 
         RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
         rd.forward(request, response);
 
-        
-        
-        
-        
     }
 
     /**

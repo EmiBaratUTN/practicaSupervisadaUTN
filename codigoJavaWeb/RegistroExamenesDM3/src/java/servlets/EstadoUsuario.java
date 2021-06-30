@@ -65,7 +65,10 @@ public class EstadoUsuario extends HttpServlet {
         if (user != null && !user.getNombreUsuario().equals("")) {
 //            verifico que el usuario tenga los permisos de administrador
             if (user.getTipoUsuario().getIdTipoUsuario() == 1) {
-
+                if (request.getAttributeNames().hasMoreElements()) {
+                    RequestDispatcher rd = request.getRequestDispatcher("menuAdmin.jsp");
+                    rd.forward(request, response);
+                }
                 int estado = Integer.parseInt(request.getParameter("estado"));
                 int idUsuer = Integer.parseInt(request.getParameter("idUsuario"));
                 

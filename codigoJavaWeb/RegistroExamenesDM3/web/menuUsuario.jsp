@@ -20,6 +20,9 @@
     </head>
     <body>
         <div class="container">
+            <div  class="">
+                <a href="LogOut"  class="btn btn-primary ">Cerrar Sesion</a>
+            </div>
             <h2>Menu de funciones de usuarios</h2>
             <h3>Hola ${usuario.nombreUsuario}</h3>
             <h4>${msj}</h4>

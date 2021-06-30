@@ -103,6 +103,7 @@
                     <th>CE</th>
                     <th>Género</th>
                     <th>Fecha Nacimiento</th>
+                    <th colspan="2">Acciones disponibles</th>
 
 
                 </tr>
@@ -119,7 +120,7 @@
                         <td>${dtoAlumnos.fechaNac}</td>
                         <td><a class="btn btn-success" href="AltaPesajeAlumno?idAlumno=${dtoAlumnos.idAlumno}">Registrar Peso</a></td>
                         <td><a class="btn btn-primary" href="ListarPeso?idAlumno=${dtoAlumnos.idAlumno}">Ver registros de peso</a></td>
-                        <td><a class="btn btn-primary" href="ListarExamenesPorAlumno?idAlumno=${dtoAlumnos.idAlumno}">Editar un pesaje??</a></td>                            
+                                                   
 <!--                        <td><a class="btn btn-success" href="EditarAlumno?idAlumno=${dtoAlumnos.idAlumno}">Editar Alumno</a></td>
                         <td><a class="btn btn-success" href="AltaPesajeAlumno?idAlumno=${dtoAlumnos.idAlumno}">Registrar Peso</a></td>-->
                     </tr>
