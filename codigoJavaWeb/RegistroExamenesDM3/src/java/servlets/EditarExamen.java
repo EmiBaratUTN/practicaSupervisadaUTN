@@ -68,10 +68,7 @@ public class EditarExamen extends HttpServlet {
 //            verifico que el usuario tenga los permisos de administrador
             if (user.getTipoUsuario().getIdTipoUsuario() == 1) {
                 
-                if (request.getAttributeNames().hasMoreElements()) {
-                    RequestDispatcher rd = request.getRequestDispatcher("ListarExamenes");
-                    rd.forward(request, response);
-                } else {
+                try {
                     idExamen = Integer.parseInt(request.getParameter("idExamen"));
 //              busco el examenDto por ID para llenar el form en el JSP
 
@@ -79,7 +76,30 @@ public class EditarExamen extends HttpServlet {
                     Examen examen = gestor.buscarExamenModel(idExamen);
                     request.setAttribute("examenDto", examenDto);
                     request.setAttribute("examenModel", examen);
+                    
+                    RequestDispatcher rd = request.getRequestDispatcher("editarExamen.jsp");
+                    rd.forward(request, response);
+                } catch (Exception e) {
+                    RequestDispatcher rd = request.getRequestDispatcher("ListarExamenes");
+                    rd.forward(request, response);
                 }
+                
+//                if (request.getAttribute("idExamen") != null) {
+//                    RequestDispatcher rd = request.getRequestDispatcher("ListarExamenes");
+//                    rd.forward(request, response);
+//                    
+//                } else {
+//                    idExamen = Integer.parseInt(request.getParameter("idExamen"));
+////              busco el examenDto por ID para llenar el form en el JSP
+//
+//                    ExamenDto examenDto = gestor.buscarExamen(idExamen);
+//                    Examen examen = gestor.buscarExamenModel(idExamen);
+//                    request.setAttribute("examenDto", examenDto);
+//                    request.setAttribute("examenModel", examen);
+//                    
+//                    RequestDispatcher rd = request.getRequestDispatcher("editarExamen.jsp");
+//                    rd.forward(request, response);
+//                }
 
             } else {
 //                cuando no tiene los permisos de edicion de examen lo redirijo al listado de examenes con un mensaje

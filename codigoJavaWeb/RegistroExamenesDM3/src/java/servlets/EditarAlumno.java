@@ -61,10 +61,7 @@ public class EditarAlumno extends HttpServlet {
         Usuario user = (Usuario) session.getAttribute("usuario");
         if (user != null && !user.getNombreUsuario().equals("")) {
             //SI EL REQUEST VIENE SIN PARAMETROS LO REDIRIJO AL LISTADO DE ALUMNOS
-            if (request.getAttributeNames().hasMoreElements()) {
-                RequestDispatcher rd = request.getRequestDispatcher("ListarAlumnos");
-                rd.forward(request, response);
-            } else {
+            try {
                 //Tomo el idAlumno que paso por la URL
                 int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
                 AccesoBaseDatos gestor = new AccesoBaseDatos();
@@ -85,7 +82,35 @@ public class EditarAlumno extends HttpServlet {
                 request.setAttribute("categoria", c);
                 RequestDispatcher rd = request.getRequestDispatcher("editarAlumnos.jsp");
                 rd.forward(request, response);
+            } catch (Exception e) {
+                RequestDispatcher rd = request.getRequestDispatcher("ListarAlumnos");
+                rd.forward(request, response);
             }
+
+//            if (!request.getAttributeNames().hasMoreElements()) {
+//                
+//            } else {
+//                //Tomo el idAlumno que paso por la URL
+//                int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
+//                AccesoBaseDatos gestor = new AccesoBaseDatos();
+//                //Busco al alumno con ese ID
+//                Alumno a = gestor.buscarAlumnoModel(idAlumno);
+//                //Uso el metodo de la clase Alumno para calcular la categoria segun la fecha de nacimiento
+//                int idCategoria = a.calcularCategConSql(a.getFechaNacimiento());
+//                //Listo todas las categorias
+//                ArrayList<Categoria> listaCategorias = gestor.listarCategorias();
+//                Categoria c = new Categoria();
+//                //Verifico a que categoria es segun el IdCategoria
+//                for (Categoria listaCategoria : listaCategorias) {
+//                    if (listaCategoria.getIdCategoria() == idCategoria) {
+//                        c = listaCategoria;
+//                    }
+//                }
+//                request.setAttribute("alumno", a);
+//                request.setAttribute("categoria", c);
+//                RequestDispatcher rd = request.getRequestDispatcher("editarAlumnos.jsp");
+//                rd.forward(request, response);
+//            }
         } else {
             String msjNoUser = "No hay usuario logueado.\nIngrese sus credenciales.";
             request.setAttribute("msj", msjNoUser);
