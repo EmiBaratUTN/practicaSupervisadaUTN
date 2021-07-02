@@ -106,11 +106,9 @@ public class AltaAlumno extends HttpServlet {
                 }
             }
 
-            
             String fechaNatalicio = request.getParameter("dateFechaNac");
             int idCategoria = alumno.calcularCategConSql(fechaNatalicio);
-            
-            
+
             String infoSan = request.getParameter("infoSanitaria");
             String infoGreneral = request.getParameter("infoGeneral");
             double altura = parseDouble(request.getParameter("txtAltura"));
@@ -120,21 +118,20 @@ public class AltaAlumno extends HttpServlet {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String fechaAlta = dateFormat.format(fechaActual);
 
-            
-
             Alumno a = new Alumno(grado, genero, nombre, apellido, fechaNatalicio, codEstadistico, dni, iosfa, grupoSang, facSang, infoSan, infoGreneral, altura, fechaAlta, null, idCategoria);
 
             if (!alumnoExiste) {
                 gestor.nuevoAlumno(a);
                 request.setAttribute("a", a);
-                
+
                 String msj = "Dió de alta ";
                 request.setAttribute("msj", msj);
-                
-                RequestDispatcher rd = request.getRequestDispatcher("exitoCargaAlumno.jsp");
-                rd.forward(request, response);
+
+                String path = request.getContextPath();
+                response.sendRedirect(path + "/exitoCargaAlumno.jsp");
+//                RequestDispatcher rd = request.getRequestDispatcher("exitoCargaAlumno.jsp");
+//                rd.forward(request, response);
             }
-            
 
         } catch (Exception e) {
             RequestDispatcher rd = request.getRequestDispatcher("errorCarga.jsp");

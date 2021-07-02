@@ -288,9 +288,12 @@ public class EditarExamen extends HttpServlet {
 
         String msj = "Editó correctamente el examen nro: " + idExamen;
         request.setAttribute("msj", msj);
+        
+        String path = request.getContextPath();
+        response.sendRedirect(path + "/exitoCarga.jsp");
 
-        RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
-        rd.forward(request, response);
+//        RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
+//        rd.forward(request, response);
 
     }
 

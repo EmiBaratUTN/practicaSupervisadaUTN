@@ -172,8 +172,10 @@ public class EditarAlumno extends HttpServlet {
             String msj = "Editó ";
             request.setAttribute("msj", msj);
 
-            RequestDispatcher rd = request.getRequestDispatcher("exitoCargaAlumno.jsp");
-            rd.forward(request, response);
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/exitoCarga.jsp");
+//            RequestDispatcher rd = request.getRequestDispatcher("exitoCargaAlumno.jsp");
+//            rd.forward(request, response);
 
         } catch (Exception e) {
             RequestDispatcher rd = request.getRequestDispatcher("errorCarga.jsp");

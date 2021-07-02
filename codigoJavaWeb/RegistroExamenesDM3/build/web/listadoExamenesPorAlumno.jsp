@@ -84,6 +84,7 @@
                         <th colspan="2">Abdominales</th>
                         <th colspan="2">Caminata</th>
                         <th style="vertical-align: middle" rowspan="2">Nota Final</th>
+                        <th style="vertical-align: middle" rowspan="2" colspan="2">Acciones</th>
                     </tr>
                     <tr>
                         <th>Nro</th>

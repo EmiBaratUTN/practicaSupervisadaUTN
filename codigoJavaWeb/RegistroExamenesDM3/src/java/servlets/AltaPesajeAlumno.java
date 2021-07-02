@@ -119,8 +119,11 @@ public class AltaPesajeAlumno extends HttpServlet {
         Pesaje p = new Pesaje(0, a, estadoPeso, fechaPesaje, peso, observaciones, bajoSeguimiento, imc);
         gestor.registrarPeso(p);
         
-        RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
-        rd.forward(request, response);
+        String path = request.getContextPath();
+        response.sendRedirect(path + "/exitoCarga.jsp");
+        
+//        RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
+//        rd.forward(request, response);
         
     }
 

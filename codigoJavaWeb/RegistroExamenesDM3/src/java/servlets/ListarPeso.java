@@ -51,30 +51,34 @@ public class ListarPeso extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
         if (user != null && !user.getNombreUsuario().equals("")) {
-            int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
+            try {
+                int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
 
-            AccesoBaseDatos gestor = new AccesoBaseDatos();
+                AccesoBaseDatos gestor = new AccesoBaseDatos();
 
-            ArrayList lista = gestor.buscarPesoPorAlumno(idAlumno);
-            request.setAttribute("listaPeso", lista);
+                ArrayList lista = gestor.buscarPesoPorAlumno(idAlumno);
+                request.setAttribute("listaPeso", lista);
 
-            ListadoAlumnosDTO alumno = gestor.buscarAlumno(idAlumno);
-            request.setAttribute("alumno", alumno);
+                ListadoAlumnosDTO alumno = gestor.buscarAlumno(idAlumno);
+                request.setAttribute("alumno", alumno);
 
-            RequestDispatcher rd = request.getRequestDispatcher("listarPesos.jsp");
-            rd.forward(request, response);
+                RequestDispatcher rd = request.getRequestDispatcher("listarPesos.jsp");
+                rd.forward(request, response);
+            } catch(Exception e)  {
+                String path = request.getContextPath();
+                response.sendRedirect(path + "/errorCarga.jsp");
+            }
         } else {
             String msjNoUser = "No hay usuario logueado.\nIngrese sus credenciales.";
             request.setAttribute("msj", msjNoUser);
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
         }
-        
-        
+
     }
 
     /**

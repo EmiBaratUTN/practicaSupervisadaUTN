@@ -19,45 +19,14 @@
     <body>
         <div class="container">
             <div class="row">
+                <h1>Acci&oacute;n realizada con &eacute;xito</h1>
                 <h3>${msj}</h3>
             </div>
-<!--            <table class="table table-striped">
 
-                <th>Nro</th>
-                <th>Fecha</th>
-                <th>Alumno</th>
-                <th>Categoria</th>
-                <th>Profesor</th>
-                <th>Nota Final</th>
-
-
-                <tr>
-                    <td>${gestor.buscarExamen(idExamen).idExamen}</td>
-                    <td>${gestor.buscarExamen(idExamen).fechaExamen}</td>
-                    <td>${gestor.buscarExamen(idExamen).nombreAlumno} ${gestor.buscarExamen(idExamen).apellidoAlumno} </td>
-                    <td>${gestor.buscarExamen(idExamen).categoria}</td>
-                    <td>${gestor.buscarExamen(idExamen).nombreProfe} ${gestor.buscarExamen(idExamen).apellidoProfe}</td>
-                    <td>${gestor.buscarExamen(idExamen).notaFinal}</td>
-                </tr>
-
-                El examen deberia mostrar el resultado de cada prueba???
-                si, pero uso otro metodo en el buscador para traer los datos. en funcion del idExamen
-
-                Hacer los links de navegacion: volver menu; cargar otro examen; cargar alumno.
-            </table>-->
-
-<!--            <table class="table table-striped">
-                <c:forEach items="${gestor.listarPruebasRendidasXIdExamen(idExamen)}" var="item">
-                    <tr>
-                        <td>${item.nombrePrueba}</td>
-                        <td>${item.resultado}</td>
-                        <td>${item.puntaje}</td>
-
-                    </tr>
-                </c:forEach>
-            </table>-->
             <br>
-            <a style="margin-right: 100px" href="ListarAlumnos" class="">Volver a listado Alumnos</a>
+            <a style="margin-right: 50px" href="ListarAlumnos" class="">Volver a listado de Alumnos</a>
+            <a style="margin-right: 50px" href="ListarAlumnos" class="">Volver a listado de examenes</a>
+            <a style="margin-right: 50px" href="ListarAlumnosPeso" class="">Volver al registro de peso</a>            
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>

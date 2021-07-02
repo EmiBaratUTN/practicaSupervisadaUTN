@@ -240,7 +240,8 @@ public class AltaExamen extends HttpServlet {
         String msj = "Registró correctamente el examen";
         request.setAttribute("msj", msj);
         
-        response.sendRedirect("exitoAltaExamen.jsp");
+        String path = request.getContextPath();
+        response.sendRedirect(path + "/exitoCarga.jsp");
                 
 //        RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
 //        rd.forward(request, response);
