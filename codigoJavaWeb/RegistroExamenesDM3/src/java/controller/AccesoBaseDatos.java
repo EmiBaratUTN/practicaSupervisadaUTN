@@ -7,6 +7,7 @@ package controller;
 
 import dtoModel.ExamenDto;
 import dtoModel.ListadoAlumnosDTO;
+import dtoModel.PruebasPromedioDTO;
 import dtoModel.PruebasXIdExamenDTO;
 import java.sql.Connection;
 import java.sql.Date;
@@ -840,8 +841,7 @@ public class AccesoBaseDatos {
                     + "			values (?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
-            
+
             st.setInt(1, e.getTipoExamen());
             st.setString(2, e.getFechaExamen());
             st.setInt(3, e.getIdProfesor());
@@ -849,15 +849,13 @@ public class AccesoBaseDatos {
             st.setString(5, e.getObservaciones());
             st.setInt(6, e.getIdCategoria());
             st.setInt(7, e.calcularNotaFinal());
-            
+
             st.execute();
             ResultSet rs = st.getGeneratedKeys();
             if (rs.next()) {
                 idExamen = rs.getInt(1);
             }
-            
-            
-                
+
             for (DetalleExamen de : e.getListaDetalleExamen()) {
                 String sqlDE = "insert into detalleExamenes (idExamen, idPrueba, fechaPrueba, resultado, puntajeObtenido, idProfesor, observaciones)\n"
                         + "values(?, ?, ?, ?, ?, ?, ?)";
@@ -872,11 +870,11 @@ public class AccesoBaseDatos {
                 stDE.setString(7, de.getObservaciones());
                 stDE.execute();
             }
-            
+
             conn.commit();
 
         } catch (Exception ex) {
-            
+
         }
     }
 
@@ -1904,6 +1902,91 @@ public class AccesoBaseDatos {
     }
 
     //CONSULTAS PARA GRAFICOS
+    //Metodo para tarer el promedio de las notas por cada prueba
+    public ArrayList<PruebasPromedioDTO> contarPruebaPromedio() {
+
+        ArrayList<PruebasPromedioDTO> lista = new ArrayList<>();
+        
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select tp.descripcion Prueba, AVG(de.puntajeObtenido) Promedio\n"
+                                            + "from detalleExamenes de\n"
+                                            + "	inner join tiposPruebas tp on tp.idPrueba = de.idPrueba\n"
+                                            + "where puntajeObtenido != 0\n"
+                                            + "group by tp.descripcion");
+
+            while (rs.next()) {
+                String prueba = rs.getString("prueba");
+                double promedio = rs.getDouble("promedio");
+                PruebasPromedioDTO pp = new PruebasPromedioDTO(prueba, promedio);
+                lista.add(pp);
+            }
+            rs.close();
+            st.close();
+            conn.close();
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+
+    //cuanto los alumnos segun su situacion de estado de peso para hacer un grafico de torta
+    public ArrayList<Integer> contarEstadosPeso() {
+
+        ArrayList<Integer> lista = new ArrayList<>();
+        int bajo = 0;
+        int normo = 0;
+        int sobre = 0;
+        int obe1 = 0;
+        int obe2 = 0;
+        int obe3 = 0;
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select idEstadoPeso from pesajes");
+
+            while (rs.next()) {
+                int idGenero = rs.getInt("idEstadoPeso");
+
+                if (idGenero == 1) {
+                    bajo++;
+                }
+                if (idGenero == 2) {
+                    normo++;
+                }
+                if (idGenero == 3) {
+                    sobre++;
+                }
+                if (idGenero == 4) {
+                    obe1++;
+                }
+                if (idGenero == 5) {
+                    obe2++;
+                }
+                if (idGenero == 6) {
+                    obe3++;
+                }
+            }
+
+            lista.add(bajo);
+            lista.add(normo);
+            lista.add(sobre);
+            lista.add(obe1);
+            lista.add(obe2);
+            lista.add(obe3);
+
+            rs.close();
+            st.close();
+            conn.close();
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+
     public ArrayList<Integer> contarGeneros() {
 
         ArrayList<Integer> lista = new ArrayList<>();

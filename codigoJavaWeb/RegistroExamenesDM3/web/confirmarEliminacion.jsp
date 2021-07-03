@@ -22,7 +22,7 @@
                 <form name="confirmarEliminacion" action="EstadoUsuario" method="post">
                     <input type="hidden" value="1" name="confirmacion">
                     <input type="hidden" value="${idUsuario}" name="txtIdUsuario">
-                    <input type="submit" class="btn btn-warning">
+                    <input type="submit" class="btn btn-warning" value="Eliminar">
                 </form>
                 <a href="ControlUsuarios" class="btn btn-primary">Cancelar</a>
             </div>

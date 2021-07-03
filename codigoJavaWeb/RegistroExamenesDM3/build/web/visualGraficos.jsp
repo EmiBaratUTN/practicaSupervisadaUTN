@@ -23,14 +23,25 @@
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                 <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
             </c:if>
-        </div>
-    <center>
-        <br>
-        <form action="GraficoTorta">
-            <input class="btn-primary" type="submit" value="Mostrar Grafico">
-        </form>
-        <br>
 
-    </center>
-</body>
+        </div>
+        <div class="container">
+            <div style="margin-bottom: 50px" class="row">
+                <div class="col-auto">
+                <img src="/RegistroExamenesDM3/GraficoTorta"></img>
+            </div>
+            <div class="col-auto">
+                <img src="/RegistroExamenesDM3/GraficoPiePesoTodos"></img>
+            </div>
+            
+            <br>
+            </div>
+            <div class="row">
+                <div class="col-auto">
+                <img src="/RegistroExamenesDM3/GraficoBarrasNotasPorPruebaTodos"></img>
+            </div>
+            </div>
+        </div>
+
+    </body>
 </html>

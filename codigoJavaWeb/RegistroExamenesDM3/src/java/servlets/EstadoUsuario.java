@@ -65,31 +65,31 @@ public class EstadoUsuario extends HttpServlet {
         if (user != null && !user.getNombreUsuario().equals("")) {
 //            verifico que el usuario tenga los permisos de administrador
             if (user.getTipoUsuario().getIdTipoUsuario() == 1) {
-                if (request.getAttributeNames().hasMoreElements()) {
-                    RequestDispatcher rd = request.getRequestDispatcher("menuAdmin.jsp");
+                try {
+                    int estado = Integer.parseInt(request.getParameter("estado"));
+                    int idUsuer = Integer.parseInt(request.getParameter("idUsuario"));
+
+                    if (estado == 1) {
+                        gestor.updateBajaUsuario(fechaActual, idUsuer);
+                    }
+                    if (estado == 2) {
+                        gestor.updateCancelarBaja(idUsuer);
+                    }
+                    //pincho el btn eliminacion...
+                    if (estado == 3) {
+                        //lo redirijo a un .jsp de confirmacion
+                        request.setAttribute("idUsuario", idUsuer);
+                        RequestDispatcher rd = request.getRequestDispatcher("confirmarEliminacion.jsp");
+                        rd.forward(request, response);
+                    }
+
+                    RequestDispatcher rd = request.getRequestDispatcher("controlUsuarios.jsp");
+                    rd.forward(request, response);
+                } catch (Exception e) {
+                    RequestDispatcher rd = request.getRequestDispatcher("errorCarga.jsp");
                     rd.forward(request, response);
                 }
-                int estado = Integer.parseInt(request.getParameter("estado"));
-                int idUsuer = Integer.parseInt(request.getParameter("idUsuario"));
                 
-                if (estado == 1) {
-                    gestor.updateBajaUsuario(fechaActual, idUsuer);
-                }
-                if (estado == 2) {
-                    gestor.updateCancelarBaja(idUsuer);
-                }
-                //pincho el btn eliminacion...
-                if (estado == 3) {
-                    //lo redirijo a un .jsp de confirmacion
-                    request.setAttribute("idUsuario", idUsuer);
-                    RequestDispatcher rd = request.getRequestDispatcher("confirmarEliminacion.jsp");
-                    rd.forward(request, response);
-                }
-
-                
-
-                RequestDispatcher rd = request.getRequestDispatcher("controlUsuarios.jsp");
-                rd.forward(request, response);
 
             } else {
 //                cuando no tiene los permisos de edicion de examen lo redirijo al listado de examenes con un mensaje

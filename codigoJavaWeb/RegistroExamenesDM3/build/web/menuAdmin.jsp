@@ -66,7 +66,7 @@
 
                     <h3>Gráficos y estadísticas</h3>
                     <ul class="nav nav-pills">
-                        <li class="nav-item"><a href="#" class="nav-link">Ver gráficos y datos estadísticos</a></li>
+                        <li class="nav-item"><a href="visualGraficos.jsp" class="nav-link">Ver gráficos y datos estadísticos</a></li>
                         <li></li>
                     </ul>
                 </div>

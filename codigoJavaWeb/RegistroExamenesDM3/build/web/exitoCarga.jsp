@@ -24,15 +24,22 @@
             </div>
 
             <br>
-            <a style="margin-right: 50px" href="ListarAlumnos" class="">Volver a listado de Alumnos</a>
-            <a style="margin-right: 50px" href="ListarAlumnos" class="">Volver a listado de examenes</a>
-            <a style="margin-right: 50px" href="ListarAlumnosPeso" class="">Volver al registro de peso</a>            
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-            </c:if>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+            <div style="margin-bottom: 50px">
+                <a style="margin-right: 50px" href="ListarAlumnos" class="">Volver a listado de Alumnos</a>
+            <a style="margin-right: 50px" href="ListarAlumnos" class="">Registrar nuevo examen</a>
+            <a style="margin-right: 50px" href="ListarExamenes" class="">Volver a listado de examenes</a>
+            </div>
+            <div>
+                <a style="margin-right: 50px" href="ListarAlumnosPeso" class="">Volver al registro de peso</a>            
+                <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+                    <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+                </c:if>
+                <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
+                    <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+                </c:if>
+            </div>
+            
+            
 
 
             <!--DEBERIA HABER UNA FORMA DE EDITAR ANTES DE MANDAR A LA BASE DE DATOS... SE PODRIA HACER EL VISUALIZAR COMO UNA VISTA PREVIA-->
