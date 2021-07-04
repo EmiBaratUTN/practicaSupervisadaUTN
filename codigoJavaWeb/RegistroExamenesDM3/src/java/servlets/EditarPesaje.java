@@ -16,8 +16,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Alumno;
 import model.Examen;
 import model.Pesaje;
+import model.TipoDeEstadoPeso;
 import model.Usuario;
 
 /**
@@ -103,7 +105,35 @@ public class EditarPesaje extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //traer los datos editaqdos de editarPesajeAlumno.jsp
+        try {
+            AccesoBaseDatos gestor = new AccesoBaseDatos();
+            int idPesaje = Integer.parseInt(request.getParameter("txtIdPesaje"));
+            int idAlumno = Integer.parseInt(request.getParameter("txtIdAlumno"));
+            double talla = Double.parseDouble(request.getParameter("txtTalla"));
+            String fechaPesaje = request.getParameter("dtpFechaPesaje");
+            double peso = Double.parseDouble(request.getParameter("txtPeso"));
+            boolean bajoSeguimiento = false;
+            if (request.getParameter("chkTratamiento") != null) {
+                bajoSeguimiento = true;
+            }
+            String observaciones = request.getParameter("txtObservaciones");
+
+            double imc = peso / (talla * talla);
+
+            TipoDeEstadoPeso estadoPeso = gestor.buscarEstadoPeso(imc);
+            Alumno a = gestor.buscarAlumnoModel(idAlumno);
+
+            Pesaje p = new Pesaje(idPesaje, a, estadoPeso, fechaPesaje, peso, observaciones, bajoSeguimiento, imc);
+            gestor.editarPesaje(p);
+
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/exitoCarga.jsp");
+
+        } catch (Exception e) {
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/errorCarga.jsp");
+        }
+
     }
 
     /**

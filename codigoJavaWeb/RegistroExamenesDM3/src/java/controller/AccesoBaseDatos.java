@@ -1122,20 +1122,19 @@ public class AccesoBaseDatos {
         return examen;
 
     }
-    
+
     //buscar un pesaje segun idPesaje
-    
-    public Pesaje buscarPesaje(int idPesaje){
+    public Pesaje buscarPesaje(int idPesaje) {
         Pesaje p = new Pesaje();
         boolean seguimiento = false;
         try {
             Connection conn = DriverManager.getConnection(CONN, USER, PASS);
             String sql = "SELECT * FROM pesajes WHERE idPesaje = ?";
-            
+
             PreparedStatement st = conn.prepareStatement(sql);
             st.setInt(1, idPesaje);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 int id = rs.getInt(1);
                 Alumno a = buscarAlumnoModel(rs.getInt(2));
                 int idEstadoPeso = rs.getInt(3);
@@ -1151,9 +1150,9 @@ public class AccesoBaseDatos {
                 double imc = rs.getDouble(8);
 
                 p = new Pesaje(id, a, tipoEst, fechaPesaje, peso, obs, seguimiento, imc);
-                
+
             }
-            
+
         } catch (Exception e) {
         }
         return p;
@@ -1619,6 +1618,41 @@ public class AccesoBaseDatos {
     }
 
     //------------------UPDATES----------------------
+    //UPDATE DE PESO
+    public void editarPesaje(Pesaje p) {
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+
+            String sql = "update pesajes\n"
+                    + "set fechaPesaje = ?,\n"
+                    + "	pesoEnKilos= ?,\n"
+                    + "	idEstadoPeso = ?,\n"
+                    + "	bajoSeguimiento = ?,\n"
+                    + "	observaciones = ?, IMC = ?\n"
+                    + "	where idPesaje= ?";
+
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, p.getFechaPesaje());
+            st.setDouble(2, p.getPesoEnKilos());
+            st.setInt(3, p.getEstadoPeso().getIdTipoEstadoPeso());
+            int bitSeguimineto = 0;
+            if (p.isBajoSeguimiento()) {
+                bitSeguimineto = 1;
+            }
+            st.setInt(4, bitSeguimineto);
+            st.setString(5, p.getObservaciones());
+            st.setInt(7, p.getIdPesaje());
+            st.setDouble(6, p.getIndiceMasaCorporal());
+
+            st.executeUpdate();
+
+            st.close();
+            conn.close();
+
+        } catch (Exception ex) {
+        }
+    }
+
     //Update para cancelar la baja de un usuario.
     public void updateCancelarBaja(int idUsuario) {
 
@@ -1942,16 +1976,16 @@ public class AccesoBaseDatos {
     public ArrayList<PruebasPromedioDTO> contarPruebaPromedio() {
 
         ArrayList<PruebasPromedioDTO> lista = new ArrayList<>();
-        
+
         try {
             Connection conn = DriverManager.getConnection(CONN, USER, PASS);
 
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select tp.descripcion Prueba, AVG(de.puntajeObtenido) Promedio\n"
-                                            + "from detalleExamenes de\n"
-                                            + "	inner join tiposPruebas tp on tp.idPrueba = de.idPrueba\n"
-                                            + "where puntajeObtenido != 0\n"
-                                            + "group by tp.descripcion");
+                    + "from detalleExamenes de\n"
+                    + "	inner join tiposPruebas tp on tp.idPrueba = de.idPrueba\n"
+                    + "where puntajeObtenido != 0\n"
+                    + "group by tp.descripcion");
 
             while (rs.next()) {
                 String prueba = rs.getString("prueba");
@@ -2057,6 +2091,29 @@ public class AccesoBaseDatos {
     }
 
     //---------------ELIMINAR--------------------
+    //ELIMINAR PESAJE
+     public void eliminarPesaje(int idPesaje) {
+
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+
+            String sql = "delete from pesajes where idPesaje = ?";
+
+            PreparedStatement st = conn.prepareStatement(sql);
+
+            st.setInt(1, idPesaje);
+
+            st.executeUpdate();
+
+            st.close();
+            conn.close();
+
+        } catch (Exception ex) {
+        }
+
+    }
+    
+    
     //Eliminar usuarios
     public void eliminarUsuario(int idUsuario) {
 

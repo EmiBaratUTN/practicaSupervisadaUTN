@@ -5,13 +5,18 @@
  */
 package servlets;
 
+import controller.AccesoBaseDatos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Pesaje;
+import model.Usuario;
 
 /**
  *
@@ -37,7 +42,7 @@ public class EliminarPesaje extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EliminarPesaje</title>");            
+            out.println("<title>Servlet EliminarPesaje</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EliminarPesaje at " + request.getContextPath() + "</h1>");
@@ -58,7 +63,36 @@ public class EliminarPesaje extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Usuario user = (Usuario) session.getAttribute("usuario");
+        int idPesaje = Integer.parseInt(request.getParameter("idPesaje"));
+        if (user != null && !user.getNombreUsuario().equals("")) {
+//            verifico que el usuario tenga los permisos de administrador
+            if (user.getTipoUsuario().getIdTipoUsuario() == 1) {
+
+                try {
+                    request.setAttribute("idPesaje", idPesaje);
+                    RequestDispatcher rd = request.getRequestDispatcher("confirmarEliminacionPeso.jsp");
+                    rd.forward(request, response);
+                } catch (Exception e) {
+                    String path = request.getContextPath();
+                    response.sendRedirect(path + "/errorCarga.jsp");
+                }
+
+            } else {
+//                cuando no tiene los permisos de edicion de examen lo redirijo al listado de examenes con un mensaje
+                String msj = "No tiene permisos para eliminar un pesaje. Comunicarse con un administrador";
+                request.setAttribute("msj", msj);
+                RequestDispatcher rd = request.getRequestDispatcher("ListarPeso");
+                rd.forward(request, response);
+            }
+        } else {
+            String msjNoUser = "No hay usuario logueado.\nIngrese sus credenciales.";
+            request.setAttribute("msj", msjNoUser);
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
     /**
@@ -72,7 +106,17 @@ public class EliminarPesaje extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            AccesoBaseDatos gestor = new AccesoBaseDatos();
+            int idPesaje = Integer.parseInt(request.getParameter("txtIdPesaje"));
+            gestor.eliminarPesaje(idPesaje);
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/exitoCarga.jsp");
+        } catch (Exception ex) {
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/errorCarga.jsp");
+        }
+
     }
 
     /**
