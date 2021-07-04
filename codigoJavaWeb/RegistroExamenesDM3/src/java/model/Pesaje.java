@@ -21,6 +21,11 @@ public class Pesaje {
     private boolean bajoSeguimiento;
     private double indiceMasaCorporal;
 
+    public Pesaje() {
+    }
+    
+    
+
     public Pesaje(int idPesaje, Alumno alumno, TipoDeEstadoPeso estadoPeso, String fechaPesaje, double pesoEnKilos, String observaciones, boolean bajoSeguimiento, double indiceMasaCorporal) {
         this.idPesaje = idPesaje;
         this.alumno = alumno;

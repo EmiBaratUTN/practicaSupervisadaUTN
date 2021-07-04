@@ -1122,6 +1122,42 @@ public class AccesoBaseDatos {
         return examen;
 
     }
+    
+    //buscar un pesaje segun idPesaje
+    
+    public Pesaje buscarPesaje(int idPesaje){
+        Pesaje p = new Pesaje();
+        boolean seguimiento = false;
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+            String sql = "SELECT * FROM pesajes WHERE idPesaje = ?";
+            
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, idPesaje);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                int id = rs.getInt(1);
+                Alumno a = buscarAlumnoModel(rs.getInt(2));
+                int idEstadoPeso = rs.getInt(3);
+                TipoDeEstadoPeso tipoEst = buscarEstadoPesoPorId(idEstadoPeso);
+                String fechaPesaje = rs.getString(4);
+                double peso = rs.getDouble(5);
+
+                String obs = rs.getString(6);
+                int bitSeguimiento = rs.getInt(7);
+                if (bitSeguimiento != 0) {
+                    seguimiento = true;
+                }
+                double imc = rs.getDouble(8);
+
+                p = new Pesaje(id, a, tipoEst, fechaPesaje, peso, obs, seguimiento, imc);
+                
+            }
+            
+        } catch (Exception e) {
+        }
+        return p;
+    }
 
     //buscar el idExamen del ultimo registro ingresado
     public int buscarIdUltimoExamen() {

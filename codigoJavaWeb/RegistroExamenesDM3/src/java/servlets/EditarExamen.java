@@ -84,22 +84,7 @@ public class EditarExamen extends HttpServlet {
                     rd.forward(request, response);
                 }
                 
-//                if (request.getAttribute("idExamen") != null) {
-//                    RequestDispatcher rd = request.getRequestDispatcher("ListarExamenes");
-//                    rd.forward(request, response);
-//                    
-//                } else {
-//                    idExamen = Integer.parseInt(request.getParameter("idExamen"));
-////              busco el examenDto por ID para llenar el form en el JSP
-//
-//                    ExamenDto examenDto = gestor.buscarExamen(idExamen);
-//                    Examen examen = gestor.buscarExamenModel(idExamen);
-//                    request.setAttribute("examenDto", examenDto);
-//                    request.setAttribute("examenModel", examen);
-//                    
-//                    RequestDispatcher rd = request.getRequestDispatcher("editarExamen.jsp");
-//                    rd.forward(request, response);
-//                }
+
 
             } else {
 //                cuando no tiene los permisos de edicion de examen lo redirijo al listado de examenes con un mensaje
@@ -287,7 +272,7 @@ public class EditarExamen extends HttpServlet {
         gestor.updateNotaExam(promedio, idExamen);
 
         String msj = "Editó correctamente el examen nro: " + idExamen;
-        request.setAttribute("msj", msj);
+        request.setAttribute("msj", msj); 
         
         String path = request.getContextPath();
         response.sendRedirect(path + "/exitoCarga.jsp");

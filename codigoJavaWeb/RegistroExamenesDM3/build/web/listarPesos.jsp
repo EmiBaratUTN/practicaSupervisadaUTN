@@ -56,8 +56,8 @@
                                 <td><input type="checkbox"> </td>
                                 </c:if>
                             <td>${item.observaciones}</td>
-                            <td><a class="btn btn-primary" href="#">Editar</a></td>
-                            <td><a class="btn btn-primary" href="#">Eliminar</a></td>
+                            <td><a class="btn btn-primary" href="EditarPesaje?idPesaje=${item.idPesaje}">Editar</a></td>
+                            <td><a class="btn btn-primary" href="EliminarPesaje?idPesaje=${item.idPesaje}">Eliminar</a></td>
                         </tr>
 
                     </c:forEach>

@@ -74,6 +74,8 @@
                 <!--<img src="/RegistroExamenesDM3/GraficoTorta?"></img>-->
             </div>
         </div>
-
+            <footer class="container">
+                <a href="./contactoFormulario.jsp">Contacto</a>
+            </footer>
     </body>
 </html>
