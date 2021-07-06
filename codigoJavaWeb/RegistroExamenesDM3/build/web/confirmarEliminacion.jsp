@@ -12,21 +12,26 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: activecaption">
         <div class="container">
-            <div class="col-3"></div>
-            <div class="col-4">
+            <div class="row">
+                <div class="col-3">
+                    <img style="box-sizing: border-box" width="100%" src="./img/exclamacion.png">
+                </div>
+                <div class="col-4">
 
-                <h1>Confirma la eliminación???</h1>
-                <h3>Posible recuperacion, no habrá.</h3>
-                <form name="confirmarEliminacion" action="EstadoUsuario" method="post">
-                    <input type="hidden" value="1" name="confirmacion">
-                    <input type="hidden" value="${idUsuario}" name="txtIdUsuario">
-                    <input type="submit" class="btn btn-warning" value="Eliminar">
-                </form>
-                <a href="ControlUsuarios" class="btn btn-primary">Cancelar</a>
+                    <h1>Confirma la eliminación???</h1>
+                    <h3>Posible recuperacion, no habrá.</h3>
+                    <form name="confirmarEliminacion" action="EstadoUsuario" method="post">
+                        <input type="hidden" value="1" name="confirmacion">
+                        <input type="hidden" value="${idUsuario}" name="txtIdUsuario">
+                        <input type="submit" class="btn btn-warning" value="Eliminar">
+                        <a href="ControlUsuarios" class="btn btn-primary">Cancelar</a>
+                    </form>
+
+                </div>
+                <div class="col-3"></div>
             </div>
-            <div class="col-3"></div>
         </div>
     </body>
 </html>

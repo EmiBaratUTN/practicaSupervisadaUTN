@@ -65,12 +65,13 @@ public class EliminarPesaje extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
-        int idPesaje = Integer.parseInt(request.getParameter("idPesaje"));
+        
         if (user != null && !user.getNombreUsuario().equals("")) {
 //            verifico que el usuario tenga los permisos de administrador
             if (user.getTipoUsuario().getIdTipoUsuario() == 1) {
 
                 try {
+                    int idPesaje = Integer.parseInt(request.getParameter("idPesaje"));
                     request.setAttribute("idPesaje", idPesaje);
                     RequestDispatcher rd = request.getRequestDispatcher("confirmarEliminacionPeso.jsp");
                     rd.forward(request, response);

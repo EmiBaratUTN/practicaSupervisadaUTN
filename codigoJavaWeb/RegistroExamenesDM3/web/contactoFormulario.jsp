@@ -14,10 +14,11 @@
         <title>Contacto</title>
 
     </head>
-    <body>
+    <body style="background-color: activecaption">
     <center>
         <div class="container">
             <h1>Formulario de contacto</h1>
+            
             <form action="https://formspree.io/f/xbjqkybd" autocomplete="off" method="POST" onsubmit="return validar()">
                 <div class="form-group ">
                     <label for="mail" class="form-label"></label>
@@ -27,14 +28,13 @@
                     <label for="txtArea" class="form-label"></label>
                     Escriba su mensaje:
                     <textarea id="txtArea" class="form-control" style="height: 100" rows="4" maxlength="140" name="message" required=""></textarea>
-                    </br>
-                    </br>
+                    </br>                    
                     <button class="btn btn-primary"type="submit">Enviar</button>
                     <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                        <a class="btn btn-primary" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+                        <a class="btn btn-primary" href="menuAdmin.jsp">Cancelar</a>
                     </c:if>
                     <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                        <a class="btn btn-primary" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+                        <a class="btn btn-primary" href="menuUsuario.jsp">Cancelar</a>
                     </c:if>
                 </div>
             </form>

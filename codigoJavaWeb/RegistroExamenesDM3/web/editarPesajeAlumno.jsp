@@ -14,18 +14,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: activecaption">
         <div class="container">
             <h1>Formulario Pesaje</h1>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <div class="row">
 
-                <div class="col-2"></div>
+                <!--<div class="col-2"></div>-->
                 <div class="col-4">
                     <form action="EditarPesaje" name="formAltaPesajeALumno" method="POST">
 

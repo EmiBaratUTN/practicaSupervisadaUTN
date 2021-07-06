@@ -16,14 +16,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <h1 class="display-1">Registro de examen</h1>
-        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-            <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-        </c:if>
-        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-            <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-        </c:if>
+    <body style="background-color: activecaption">
+        <div class="container">
+            <h1 class="">Registro de examen</h1>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+            </c:if>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
+                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+            </c:if>
+        </div>
         <table class="table table-striped table-center table-centered text-center table-bordered">
 
             <thead>
@@ -57,7 +59,7 @@
         </table>  
 
         <div class="container">
-            <h2 class="display-3">Ingrese los datos del examen</h2>
+            <h2 class="">Ingrese los datos del examen</h2>
             <form action="AltaExamen" method="POST" name="formAltaExamen">
 
                 <!--paso el idAlumno y el idCategoria para poder completar los campos de examen.-->

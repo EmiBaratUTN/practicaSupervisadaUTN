@@ -18,18 +18,18 @@
         <title>AltaAlumno</title>
 
     </head>
-    <body>
+    <body style="background-color: activecaption">
         <div class="container">
 
             <h1>Formulario Alta Alumno</h1>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <!--            <div class="row">-->
-            <form class="form-control" action="AltaAlumno" name="formAltaALumno" method="POST">
+            <form style="background-color: activecaption" class="form-control" action="AltaAlumno" name="formAltaALumno" method="POST">
                 <div class="row d-flex">
                     <div class="col-5 ">
                         <label for="nombre" class="form-label">Nombre</label>

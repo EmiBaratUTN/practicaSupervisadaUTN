@@ -107,9 +107,11 @@ public class AltaProfesor extends HttpServlet {
 
             gestor.registrarProfesor(p);
 
-            RequestDispatcher rd = request.getRequestDispatcher("menuAdmin.jsp");
-            rd.forward(request, response);
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/exitoCarga.jsp");
         } catch (Exception e) {
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/errorCarga.jsp");
         }
         
         

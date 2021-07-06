@@ -13,16 +13,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: activecaption">
         <div class="container">
-            <h1>Error!!</h1>
+            <h1>Se ha producido un error</h1>
+            <h3>Regrese al menu principal y reintente la acción</h3>
+            <h4>si el error persiste comuniquese con un administrados o contacte con el servicio técnico</h3>
             <p>${msj}</p>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a class="link" href="menuAdmin.jsp">Volver al menu</a>
+                <a class="btn btn-primary" style="" href="menuAdmin.jsp">Volver al menu</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a class="link" href="menuUsuario.jsp">Volver al menu</a>
+                <a class="btn btn-primary" style=""  href="menuUsuario.jsp">Volver al menu</a>
             </c:if>
+                <a class="btn btn-primary" style="margin-left: 50px" href="contactoFormulario.jsp">Contacto</a>
             
         </div>
     </body>

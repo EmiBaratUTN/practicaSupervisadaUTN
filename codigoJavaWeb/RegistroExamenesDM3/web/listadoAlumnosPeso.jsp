@@ -14,21 +14,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Listado Alumnos</title>
     </head>
-    <body>
-        <h1>Listado de Alumnos para consultas de Peso</h1>
-        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-        <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-        </c:if>
-        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-        <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-        </c:if>
-        
-        <div class="container-fluid">            
+    <body style="background-color: activecaption">
+        <div class="container">
+            <h1>Listado de Alumnos para consultas de Peso</h1>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+            </c:if>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
+                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+            </c:if>
+
+
             <h2>Filtrar Alumnos por...</h2>
             <form class="form d-block " action="ListarAlumnosPeso" method="post">
 <!--                <input name="hiddenIdAlumno" type="hidden" value="${alumno.idAlumno}"/>-->
 
-                <div class="container form-group row">
+                <div class="form-group row">
                     <div class="col-auto">
                         <label class="form-label" for="nombreAlumno">Por nombre</label>
                         <input class="form-control" id="nombreAlumno" name="txtNombreAlumno" type="text"/>
@@ -50,7 +51,7 @@
 
                 </div>
 
-                <div style="align-items: flex-end " class="container row">
+                <div style="align-items: flex-end " class="row">
                     <div style="padding-right:1px" class="col-auto">
                         <label class="form-label d-block" for="codEstadistico">...Codigo estadistico</label>
                         <input class="form-control d-block" type="text" name="txtCodEstadistico" id="codEstadistico"/>
@@ -120,9 +121,9 @@
                         <td>${dtoAlumnos.fechaNac}</td>
                         <td><a class="btn btn-success" href="AltaPesajeAlumno?idAlumno=${dtoAlumnos.idAlumno}">Registrar Peso</a></td>
                         <td><a class="btn btn-primary" href="ListarPeso?idAlumno=${dtoAlumnos.idAlumno}">Ver registros de peso</a></td>
-                                                   
+
 <!--                        <td><a class="btn btn-success" href="EditarAlumno?idAlumno=${dtoAlumnos.idAlumno}">Editar Alumno</a></td>
-                        <td><a class="btn btn-success" href="AltaPesajeAlumno?idAlumno=${dtoAlumnos.idAlumno}">Registrar Peso</a></td>-->
+<td><a class="btn btn-success" href="AltaPesajeAlumno?idAlumno=${dtoAlumnos.idAlumno}">Registrar Peso</a></td>-->
                     </tr>
                 </c:forEach>
             </tbody>

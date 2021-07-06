@@ -16,30 +16,30 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Examenes eduFis</title>
     </head>
-    <body>
+    <body style="background-color: activecaption">
         <div class="container">
-            <div class="row">
+            
                 <h1>Acci&oacute;n realizada con &eacute;xito</h1>
-                <h3>${msj}</h3>
-            </div>
+                <!--<h3>${msj}</h3>-->
+            
 
             <br>
             <div style="margin-bottom: 50px">
-                <a style="margin-right: 50px" href="ListarAlumnos" class="">Volver a listado de Alumnos</a>
-            <a style="margin-right: 50px" href="ListarAlumnos" class="">Registrar nuevo examen</a>
-            <a style="margin-right: 50px" href="ListarExamenes" class="">Volver a listado de examenes</a>
+                <a style="margin-right: 50px" href="ListarAlumnos" class="btn btn-primary">Volver a listado de Alumnos</a>
+                <a style="margin-right: 50px" href="ListarAlumnos" class="btn btn-primary">Registrar nuevo examen</a>
+                <a style="margin-right: 50px" href="ListarExamenes" class="btn btn-primary">Volver a listado de examenes</a>
             </div>
             <div>
-                <a style="margin-right: 50px" href="ListarAlumnosPeso" class="">Volver al registro de peso</a>            
+                <a style="margin-right: 50px" href="ListarAlumnosPeso" class="btn btn-primary">Volver al registro de peso</a>            
                 <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                    <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+                    <a class="btn btn-primary" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
                 </c:if>
                 <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                    <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+                    <a class="btn btn-primary" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
                 </c:if>
             </div>
-            
-            
+
+
 
 
             <!--DEBERIA HABER UNA FORMA DE EDITAR ANTES DE MANDAR A LA BASE DE DATOS... SE PODRIA HACER EL VISUALIZAR COMO UNA VISTA PREVIA-->

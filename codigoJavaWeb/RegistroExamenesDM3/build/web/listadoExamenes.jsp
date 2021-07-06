@@ -14,25 +14,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: activecaption">
         <div class="container">
             <h1>Listado de Examenes</h1>
             <h3>${msj}</h3>
-        </div>
-
-        <!--FILTROS PARA EXAMENES-->
-        <div class="container-fluid">
+        
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <h2>Filtrar examenes...</h2>
             <form class="form d-block " action="ListarExamenes" method="post">
 <!--                <input name="hiddenIdAlumno" type="hidden" value="${alumno.idAlumno}"/>-->
 
-                <div class="container form-group row">
+                <div class="form-group row">
                     <div class="col-auto">
                         <label class="form-label" for="nombreAlumno">Por nombre</label>
                         <input class="form-control" id="nombreAlumno" name="txtNombreAlumno" type="text"/>
@@ -58,7 +55,7 @@
                 <!--aca pongo los controles para filtrar la lista, se las mando a un servlet
                 y le devuelvo al JSP los mismos PARAMETERS 'alumno' y 'examenes'
                 Empecemos con filtros: FECHA, TIPO DE EXAMEN, APROBADO/REPROBADO-->
-                <div style="align-items: flex-end " class="container row">
+                <div style="align-items: flex-end " class="row">
                     <div style="padding-right:1px" class="col-auto">
                         <label class="form-label d-block" for="fechaDesdeExamen">Fecha desde...</label>
                         <input class="form-control d-block" type="date" name="dtpFechaDesdeExamen" id="fechaDesdeExamen"/>
@@ -88,7 +85,7 @@
                     </div>
                 </div>
                 <br/>
-                <div class="container row">
+                <div class="row">
                     <div class="col-auto">
                         <input class=" form-control btn btn-primary mb-2" type="submit" value="Aplicar filtros"/>
 

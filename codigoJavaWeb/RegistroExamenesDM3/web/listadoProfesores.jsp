@@ -14,17 +14,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ControlUsers</title>
     </head>
-    <body>
-        <h1>Listado de Profesores</h1>
-        <!--        <--con estas condiciones el link 'volver' dirije al menu adecuado para cada tipo de usuario-->
-        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-            <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-        </c:if>
-        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-            <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-        </c:if>
+    <body style="background-color: activecaption">
+        <div class="container">
+            <h1>Listado de Profesores</h1>
+            <!--        <--con estas condiciones el link 'volver' dirije al menu adecuado para cada tipo de usuario-->
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+            </c:if>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
+                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+            </c:if>
 
-        <div class="container">            
+
             <!--            <h2>Filtrar Alumnos por...</h2>
                         <form class="form d-block " action="ListarAlumnosPeso" method="post">
                             <input name="hiddenIdAlumno" type="hidden" value="${alumno.idAlumno}"/>
@@ -115,17 +116,17 @@
                             <td>${profe.apellido}</td>
                             <td>${profe.codigoEstadistico}</td>
                             <td>${profe.matriculaIndividual}</td>
-                            
+
                             <!--                            <td>
                             <c:if test="${u.activo}"><input class="form-check-input" type="checkbox" checked=""></c:if>
                             <c:if test="${u.activo == false}"><input  type="checkbox"></c:if>
                             </td>-->
                                 <td>${profe.fechaBaja}</td>
-                            
+
                             <td><a class="btn btn-success" href="EstadoProfesor?estado=1&idProfe=${profe.idProfesor}">Dar de baja</a></td>
                             <td><a class="btn btn-primary" href="EstadoProfesor?estado=2&idProfe=${profe.idProfesor}">Cancelar Baja</a></td>
                             <td><a class="btn btn-primary" href="EstadoProfesor?estado=3&idProfe=${profe.idProfesor}">Eliminar</a></td>                            
-   
+
                         </tr>
                     </c:forEach>
                 </tbody>

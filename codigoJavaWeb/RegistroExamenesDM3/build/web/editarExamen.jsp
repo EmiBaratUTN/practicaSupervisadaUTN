@@ -14,17 +14,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editar examen</title>
     </head>
-    <body>
-        <h1>Edición de examen</h1>
-        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-            <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-        </c:if>
-        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-            <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-        </c:if>
+    <body style="background-color: activecaption">
         <div class="container">
-            <h2 class="display-3">Edite los datos del examen nro: ${examenDto.idExamen}</h2>
-            <h3></h3>
+            <h1>Edición de examen nro ${examenDto.idExamen}</h1>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+            </c:if>
+            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
+                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+            </c:if>
+
+            <h4>Edite los resultados de las pruebas</h4>
             <form action="EditarExamen" method="POST" name="formEdicionExamen">
 
                 <!--paso el idAlumno y el idCategoria para poder completar los campos de examen.-->
@@ -66,7 +66,7 @@
 
                 </br>
                 <!--////////////busco las pruebas de la DB y las pongo como inputs-->       
-                <h4>Ingrese los resultados de las pruebas</h4>
+
                 <div class="row">
 
                     <div class="col">
@@ -96,14 +96,14 @@
                         <input  class="btn btn-primary" type="submit" value="Editar">
                     </div>
                     <a href="ListarExamenes" class="btn btn-primary">Cancelar</a>
-<!--                    <div class="col-auto">
-                        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                            <a class="btn btn-primary" href="menuAdmin.jsp">Cancelar</a>
-                        </c:if>
-                        <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                            <a class="btn btn-primary" href="menuUsuario.jsp">Cancelar</a>
-                        </c:if>
-                    </div>-->
+                    <!--                    <div class="col-auto">
+                    <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+                        <a class="btn btn-primary" href="menuAdmin.jsp">Cancelar</a>
+                    </c:if>
+                    <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
+                        <a class="btn btn-primary" href="menuUsuario.jsp">Cancelar</a>
+                    </c:if>
+                </div>-->
 
 
                 </div>

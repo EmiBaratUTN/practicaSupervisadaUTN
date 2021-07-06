@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/model/Pesaje.java</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/confirmarEliminacion.jsp</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/AltaPesajeAlumno.java</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/EliminarPesaje.java</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/editarPesajeAlumno.jsp</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/confirmarEliminacionPeso.jsp</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/listarPesos.jsp</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/model/Alumno.java</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/servlets/EditarPesaje.java</file>
-            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/src/java/controller/AccesoBaseDatos.java</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/menuAdmin.jsp</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/login.jsp</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/menuUsuario.jsp</file>
+            <file>file:/D:/PracticaSupervisadaUTN/codigoJavaWeb/RegistroExamenesDM3/web/altaAlumno.jsp</file>
         </group>
     </open-files>
 </project-private>

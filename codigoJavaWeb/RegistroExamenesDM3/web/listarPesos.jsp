@@ -14,18 +14,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <div class="container-fluid">
+    <body style="background-color: activecaption">
+        <div class="container">
             <h1>Registro de peso del alumno ${alumno.nombre} ${alumno.apellido} </h1>
-            <a style="margin-right: 50px" class="text-info" href="ListarAlumnosPeso">Volver a listado de alumnos</a>
+            <a style="margin-right: 50px; color: darkblue" class="" href="ListarAlumnosPeso">Volver a listado de alumnos</a>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a href="menuAdmin.jsp">Volver al men&uacute; principal</a>
+                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
+                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
             </c:if>
+        </div>
 
-
+        <div class="container-fluid">
             <table class="table table-centered table-striped table-bordered">
                 <thead >
                     <tr  class="">
@@ -50,10 +51,10 @@
                             <td>${item.indiceMasaCorporal}</td>
                             <td>${item.estadoPeso.descripcion}</td>
                             <c:if test="${item.bajoSeguimiento}">
-                                <td><input type="checkbox"  checked=""></td>
+                                <td><input type="checkbox"   checked=""></td>
                                 </c:if>
                                 <c:if test="${!item.bajoSeguimiento}">
-                                <td><input type="checkbox"> </td>
+                                <td><input  type="checkbox"> </td>
                                 </c:if>
                             <td>${item.observaciones}</td>
                             <td><a class="btn btn-primary" href="EditarPesaje?idPesaje=${item.idPesaje}">Editar</a></td>
@@ -72,6 +73,5 @@
                 </tbody>
             </table>
         </div>
-
     </body>
 </html>
