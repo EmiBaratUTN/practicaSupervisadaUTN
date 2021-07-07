@@ -59,7 +59,7 @@
             }
             const expresion = /^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
 
-            if (!expresion.test(mail)) {
+            if (expresion.test(mail)) {
                 valida = false;
             }
             if (!valida) {
