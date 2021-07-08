@@ -81,6 +81,7 @@ public class VerificarLogin extends HttpServlet {
 
             if (pass.equals(user.getPassword().trim())) {
                 session.setAttribute("usuario", user);
+                session.setAttribute("rol", user.getTipoUsuario().getIdTipoUsuario());
             } else {
                 String msjErrorPass = "Contraseña incorrecta";
                 request.setAttribute("contrasenaIncorrecta", msjErrorPass);

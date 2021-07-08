@@ -137,10 +137,10 @@ public class EditarExamen extends HttpServlet {
 
 //        hago el update en el detalle de examen correspondiente y voy preparando el promedio para el update final a Examen
         double timeCarrera = 0;
-        if (!request.getParameter("txtcarrera3k").trim().equals("")) {
-            timeCarrera = Double.parseDouble(request.getParameter("txtcarrera3k"));
+        if (!request.getParameter("txtCarrera 3K").trim().equals("")) {
+            timeCarrera = Double.parseDouble(request.getParameter("txtCarrera 3K"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebacarrera3k"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaCarrera 3K"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, timeCarrera);
 
             DetalleExamen de = new DetalleExamen(idExamen, idPrueba, fechaExamen, timeCarrera, puntaje, idProfe, obs);
@@ -149,7 +149,7 @@ public class EditarExamen extends HttpServlet {
         }
         if (timeCarrera != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebacarrera3k"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaCarrera 3K"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, timeCarrera);
 
             puntajeAcum += puntaje;
@@ -162,11 +162,11 @@ public class EditarExamen extends HttpServlet {
         }
 
         double cantFlex = 0;
-        String txtFlexiones = request.getParameter("txtflexo-extenciones").trim();
+        String txtFlexiones = request.getParameter("txtFlexiones").trim();
         if (!txtFlexiones.trim().equals("")) {
-            cantFlex = Double.parseDouble(request.getParameter("txtflexo-extenciones"));
+            cantFlex = Double.parseDouble(request.getParameter("txtFlexiones"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaflexo-extenciones"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaFlexiones"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantFlex);
 
             DetalleExamen de = new DetalleExamen(idExamen, idPrueba, fechaExamen, cantFlex, puntaje, idProfe, obs);
@@ -175,7 +175,7 @@ public class EditarExamen extends HttpServlet {
         }
         if (cantFlex != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaflexo-extenciones"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaFlexiones"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantFlex);
 
             puntajeAcum += puntaje;
@@ -188,10 +188,10 @@ public class EditarExamen extends HttpServlet {
         }
 
         double cantBarras = 0;
-        if (!request.getParameter("txtbarras").trim().equals("")) {
-            cantBarras = Double.parseDouble(request.getParameter("txtbarras"));
+        if (!request.getParameter("txtBarras").trim().equals("")) {
+            cantBarras = Double.parseDouble(request.getParameter("txtBarras"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebabarras"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaBarras"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantBarras);
 
             DetalleExamen de = new DetalleExamen(idExamen, idPrueba, fechaExamen, cantBarras, puntaje, idProfe, obs);
@@ -201,7 +201,7 @@ public class EditarExamen extends HttpServlet {
 
         if (cantBarras != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebabarras"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaBarras"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantBarras);
 
             puntajeAcum += puntaje;
@@ -214,10 +214,10 @@ public class EditarExamen extends HttpServlet {
         }
 
         double cantAbs = 0;
-        if (!request.getParameter("txtabdominales").trim().equals("")) {
-            cantAbs = Double.parseDouble(request.getParameter("txtabdominales"));
+        if (!request.getParameter("txtAbdominales").trim().equals("")) {
+            cantAbs = Double.parseDouble(request.getParameter("txtAbdominales"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaabdominales"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaAbdominales"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantAbs);
 
             DetalleExamen de = new DetalleExamen(idExamen, idPrueba, fechaExamen, cantAbs, puntaje, idProfe, obs);
@@ -227,7 +227,7 @@ public class EditarExamen extends HttpServlet {
 
         if (cantAbs != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaabdominales"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaAbdominales"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantAbs);
 
             puntajeAcum += puntaje;
@@ -240,11 +240,11 @@ public class EditarExamen extends HttpServlet {
         }
 
         double timeCaminata = 0;
-        String txtCaminata = request.getParameter("txtcaminata").trim();
+        String txtCaminata = request.getParameter("txtCaminata").trim();
         if (!txtCaminata.equals("")) {
-            timeCaminata = Double.parseDouble(request.getParameter("txtcaminata"));
+            timeCaminata = Double.parseDouble(request.getParameter("txtCaminata"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebacaminata"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaCaminata"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, timeCaminata);
 
             DetalleExamen de = new DetalleExamen(idExamen, idPrueba, fechaExamen, timeCaminata, puntaje, idProfe, obs);
@@ -254,7 +254,7 @@ public class EditarExamen extends HttpServlet {
 
         if (timeCaminata != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebacaminata"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaCaminata"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, timeCaminata);
 
             puntajeAcum += puntaje;

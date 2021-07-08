@@ -13,14 +13,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
 
         <div class="container">
             <div style="height: 150px" class="row align-items-center">
                 <div class="col-auto">
                     <h1>Recuperacion de contraseña</h1>
                     <h4>Responda correctamente para ver su contraseña</h4>
-                    <a style="color: darkblue" href="login.jsp">Volver al login</a>
+                    <a style="color: #464F41" href="login.jsp">Volver al login</a>
                 </div>
             </div>
             <div style="margin-top: 20px" class="row justify-content-center align-items-center">

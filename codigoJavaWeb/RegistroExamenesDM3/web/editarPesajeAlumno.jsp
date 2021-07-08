@@ -14,10 +14,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
         <div class="container">
             <h1>Formulario Pesaje</h1>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+            <!--<c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
@@ -25,7 +26,7 @@
             </c:if>
             <div class="row">
 
-                <!--<div class="col-2"></div>-->
+                <div class="col-2"></div>-->
                 <div class="col-4">
                     <form action="EditarPesaje" name="formAltaPesajeALumno" method="POST">
 

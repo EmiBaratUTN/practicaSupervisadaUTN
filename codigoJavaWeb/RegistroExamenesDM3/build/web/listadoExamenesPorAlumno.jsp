@@ -14,16 +14,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
         <div class="container">
             <h1>Examenes de ${alumno.nombre} ${alumno.apellido} </h1>
-            <a  style="color: darkblue; margin-right: 50px " class="" href="ListarAlumnos">Volver a listado de alumnos</a>
+            <!-- <a  style="color: darkblue; margin-right: 50px " class="" href="ListarAlumnos">Volver a listado de alumnos</a>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                 <a href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+            </c:if> -->
 
             <div>
                 <h2>Filtrar examenes</h2>
@@ -44,7 +45,7 @@
                             <input class="form-control d-block" type="date" name="dtpFechaHastaExamen" id="fechaHastaExamen"/>
                         </div>
                         <div style="padding-right:1px" class="col-auto">
-                            <label class="form-label d-inline" for="tipoExamen">Tipo de Examen</label>
+                            <label class="form-label d-block" for="tipoExamen">Tipo de Examen</label>
                             <select class="form-control d-inline" id="tipoExamen" name="cmbTipoExamen">
                                 <c:forEach items="${ gestor.listarTiposExamen()}" var="item">
                                     <option value="${ item.idTipoExamen }">${ item.descripcion }</option>
@@ -53,7 +54,7 @@
                             </select>
                         </div>
                         <div style="padding-right:1px " class="col-auto">
-                            <label class="form-label d-inline" for="tipoCondicion">Condición</label>
+                            <label class="form-label d-block" for="tipoCondicion">Condición</label>
                             <select  class="form-control d-inline" id="tipoCondicion" name="cmbTipoCondicion">
 
                                 <option value="1">Aprobado</option>
@@ -132,7 +133,7 @@
 
                         <td>${item.notaFinal}</td>
                         <td><a class="btn btn-primary" href="EditarExamen?idExamen=${item.idExamen}">Editar</a></td>
-                        <td><a class="btn btn-primary" href="EliminarExamen?idExamen=${item.idExamen}">Eliminar</a></td>
+                        <!--<td><a class="btn btn-primary" href="EliminarExamen?idExamen=${item.idExamen}">Eliminar</a></td>-->
 
 
                     </tr>

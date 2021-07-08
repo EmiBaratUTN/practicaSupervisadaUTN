@@ -71,7 +71,7 @@ public class VerificarRespuestaSecreta extends HttpServlet {
         Usuario user = gestor.buscarUsuario(nombreUsuario);
         
         if (user.getRespuestaSecreta().trim().equalsIgnoreCase(respuestaUser)) {
-            String msj = "Su contraseña es:............. " + user.getPassword();
+            String msj = "Su contraseña es: '" + user.getPassword().trim() + "'";
             request.setAttribute("msj", msj);
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);

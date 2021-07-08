@@ -14,15 +14,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
         <div style="margin-bottom: 20px" class="container">
             <h1>Mostrar Graficos estadisticos</h1>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+            <!--<c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                 <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+            </c:if>-->
 
         </div>
         <div class="container">

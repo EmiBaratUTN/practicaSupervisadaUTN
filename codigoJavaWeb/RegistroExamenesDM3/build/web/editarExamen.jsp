@@ -14,15 +14,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editar examen</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
         <div class="container">
             <h1>Edición de examen nro ${examenDto.idExamen}</h1>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+            <!--<c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                 <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+            </c:if>-->
 
             <h4>Edite los resultados de las pruebas</h4>
             <form action="EditarExamen" method="POST" name="formEdicionExamen">

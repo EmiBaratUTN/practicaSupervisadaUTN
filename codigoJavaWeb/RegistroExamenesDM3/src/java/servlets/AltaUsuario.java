@@ -118,12 +118,14 @@ public class AltaUsuario extends HttpServlet {
 
             gestor.registrarUsuario(u);
 
-            RequestDispatcher rd = request.getRequestDispatcher("menuAdmin.jsp");
-            rd.forward(request, response);
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/exitoCarga.jsp");
+            
         } catch (Exception e) {
+            RequestDispatcher rd = request.getRequestDispatcher("errorCarga.jsp");
+            rd.forward(request, response);
         }
-        
-        
+
     }
 
     /**

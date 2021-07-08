@@ -16,48 +16,44 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
         <div class="container">
             <h1 class="">Registro de examen</h1>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-            </c:if>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+
+
+            <table class="table table-striped table-center table-centered text-center table-bordered">
+
+                <thead>
+                    <tr>
+                        <th>Grado</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>DNI</th>
+                        <th>CE</th>
+                        <th>Género</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${alumnoDto.grado}</td>
+                        <td>${alumnoDto.apellido}</td>
+                        <td>${alumnoDto.nombre}</td>
+                        <td>${alumnoDto.dni}</td>
+                        <td>${alumnoDto.codigoEst}</td>
+                        <td>${alumnoDto.genero}</td>
+                        <td>${alumnoDto.fechaNac}</td>
+                        <td>${categoria}</td>
+
+
+
+
+                    </tr>
+                </tbody>
+            </table>  
         </div>
-        <table class="table table-striped table-center table-centered text-center table-bordered">
-
-            <thead>
-                <tr>
-                    <th>Grado</th>
-                    <th>Apellido</th>
-                    <th>Nombre</th>
-                    <th>DNI</th>
-                    <th>CE</th>
-                    <th>Género</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Categoria</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>${alumnoDto.grado}</td>
-                    <td>${alumnoDto.apellido}</td>
-                    <td>${alumnoDto.nombre}</td>
-                    <td>${alumnoDto.dni}</td>
-                    <td>${alumnoDto.codigoEst}</td>
-                    <td>${alumnoDto.genero}</td>
-                    <td>${alumnoDto.fechaNac}</td>
-                    <td>${categoria}</td>
-
-
-
-
-                </tr>
-            </tbody>
-        </table>  
-
         <div class="container">
             <h2 class="">Ingrese los datos del examen</h2>
             <form action="AltaExamen" method="POST" name="formAltaExamen">

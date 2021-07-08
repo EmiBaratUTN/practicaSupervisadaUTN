@@ -12,26 +12,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Exito Carga Alumno</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %> 
         <div class="container">
-            <h1>Registró con exito al alumno ${a.nombres} ${a.apellidos}</h1>
-            <div class="row">
-                <div class="col-5">
-
-                    <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                        <a  class="btn btn-primary" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-                    </c:if>
-                    <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                        <a  class="btn btn-primary" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-                    </c:if>
-                    <a class="btn btn-success" style="margin-left: 30px" href="AltaAlumno">Registrar otro alumno</a>
+            <div class="row d-flex">
+                <div class="col-6">
+                    <h1>Acci&oacute;n realizada con &eacute;xito</h1>
+                    
+                </div>
+                <div class="col-6">
+                    <img width="400px" src="img/saludo1.png">
+                    
                 </div>
             </div>
-            </br>
-            </br>
-            <center>
+            
+            
+<!--            <center>
                 <img style="box-sizing: border-box" height="300px"  src="./img/exitoCheckVerde.jpg">
-            </center>
+            </center>-->
 
         </div>
 

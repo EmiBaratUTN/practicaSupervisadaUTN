@@ -14,7 +14,8 @@
         <title>Contacto</title>
 
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
     <center>
         <div class="container">
             <h1>Formulario de contacto</h1>

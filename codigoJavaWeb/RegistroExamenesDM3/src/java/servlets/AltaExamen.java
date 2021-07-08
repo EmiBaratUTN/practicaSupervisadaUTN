@@ -56,20 +56,26 @@ public class AltaExamen extends HttpServlet {
         HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
         if (user != null && !user.getNombreUsuario().equals("")) {
-            AccesoBaseDatos gestor = new AccesoBaseDatos();
-            int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
+            try {
+                AccesoBaseDatos gestor = new AccesoBaseDatos();
+                int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
 
-            ListadoAlumnosDTO dtoAlumno = gestor.buscarAlumno(idAlumno);
+                ListadoAlumnosDTO dtoAlumno = gestor.buscarAlumno(idAlumno);
 
-            String nombreCategoria = dtoAlumno.getCategoria().getDescripcion();
-            int idCategoria = dtoAlumno.getCategoria().getIdCategoria();
+                String nombreCategoria = dtoAlumno.getCategoria().getDescripcion();
+                int idCategoria = dtoAlumno.getCategoria().getIdCategoria();
 
-            request.setAttribute("categoria", nombreCategoria);
-            request.setAttribute("idCategoria", idCategoria);
-            request.setAttribute("alumnoDto", dtoAlumno);
+                request.setAttribute("categoria", nombreCategoria);
+                request.setAttribute("idCategoria", idCategoria);
+                request.setAttribute("alumnoDto", dtoAlumno);
 
-            RequestDispatcher rd = request.getRequestDispatcher("altaExamen.jsp");
-            rd.forward(request, response);
+                RequestDispatcher rd = request.getRequestDispatcher("altaExamen.jsp");
+                rd.forward(request, response);
+            } catch (Exception e) {
+                RequestDispatcher rd = request.getRequestDispatcher("ListarAlumnos");
+                rd.forward(request, response);
+            }
+
         } else {
             String msjNoUser = "No hay usuario logueado.\nIngrese sus credenciales.";
             request.setAttribute("msj", msjNoUser);
@@ -92,7 +98,7 @@ public class AltaExamen extends HttpServlet {
         String fechaExamen = request.getParameter("dtpFechaExamen");
         String obs = request.getParameter("txtObservaciones");
         int idGenero = Integer.parseInt(request.getParameter("txtIdGenero"));
-        
+
         Examen e = new Examen(tipoExamen, fechaExamen, idProfe, idAluno, obs, idCateg);
 
         AccesoBaseDatos gestor = new AccesoBaseDatos();
@@ -102,150 +108,147 @@ public class AltaExamen extends HttpServlet {
         //busco el puntaje correspondiente en MatrizResultados para cada prueba
         //Añado el detalle de examen de cada prueba en el atributo ArrayList de Examen
         double timeCarrera = 0;
-        if (!request.getParameter("txtcarrera3k").trim().equals("")) {
-            timeCarrera = Double.parseDouble(request.getParameter("txtcarrera3k"));
+        if (!request.getParameter("txtCarrera 3K").trim().equals("")) {
+            timeCarrera = Double.parseDouble(request.getParameter("txtCarrera 3K"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebacarrera3k"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaCarrera 3K"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, timeCarrera);
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, timeCarrera, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, timeCarrera, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
         }
         if (timeCarrera != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebacarrera3k"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaCarrera 3K"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, timeCarrera);
 
             puntajeAcum += puntaje;
             cantPruebasRendidas++;
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, timeCarrera, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, timeCarrera, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 
 //            gestor.registrarDetalleExamen(de);
-
         }
 
         double cantFlex = 0;
-        String txtFlexiones = request.getParameter("txtflexo-extenciones").trim();
+        String txtFlexiones = request.getParameter("txtFlexiones").trim();
         if (!txtFlexiones.trim().equals("")) {
-            cantFlex = Double.parseDouble(request.getParameter("txtflexo-extenciones"));
+            cantFlex = Double.parseDouble(request.getParameter("txtFlexiones"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaflexo-extenciones"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaFlexiones"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantFlex);
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, cantFlex, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, cantFlex, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
         }
         if (cantFlex != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaflexo-extenciones"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaFlexiones"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantFlex);
 
             puntajeAcum += puntaje;
             cantPruebasRendidas++;
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, cantFlex, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, cantFlex, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
 
         }
 
         double cantBarras = 0;
-        if (!request.getParameter("txtbarras").trim().equals("")) {
-            cantBarras = Double.parseDouble(request.getParameter("txtbarras"));
+        if (!request.getParameter("txtBarras").trim().equals("")) {
+            cantBarras = Double.parseDouble(request.getParameter("txtBarras"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebabarras"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaBarras"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantBarras);
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, cantBarras, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, cantBarras, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
         }
 
         if (cantBarras != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebabarras"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaBarras"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantBarras);
 
             puntajeAcum += puntaje;
             cantPruebasRendidas++;
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, cantBarras, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, cantBarras, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
 
         }
 
         double cantAbs = 0;
-        if (!request.getParameter("txtabdominales").trim().equals("")) {
-            cantAbs = Double.parseDouble(request.getParameter("txtabdominales"));
+        if (!request.getParameter("txtAbdominales").trim().equals("")) {
+            cantAbs = Double.parseDouble(request.getParameter("txtAbdominales"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaabdominales"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaAbdominales"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantAbs);
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, cantAbs, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, cantAbs, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
         }
 
         if (cantAbs != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaabdominales"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaAbdominales"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, cantAbs);
 
             puntajeAcum += puntaje;
             cantPruebasRendidas++;
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, cantAbs, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, cantAbs, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
 
         }
 
         double timeCaminata = 0;
-        String txtCaminata = request.getParameter("txtcaminata").trim();
+        String txtCaminata = request.getParameter("txtCaminata").trim();
         if (!txtCaminata.equals("")) {
-            timeCaminata = Double.parseDouble(request.getParameter("txtcaminata"));
+            timeCaminata = Double.parseDouble(request.getParameter("txtCaminata"));
         } else {
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebacaminata"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaCaminata"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, timeCaminata);
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, timeCaminata, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, timeCaminata, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
         }
 
         if (timeCaminata != 0) {
             //necesito todos los datos para hacer el insert en detalleExamen.
-            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebacaminata"));
+            int idPrueba = Integer.parseInt(request.getParameter("txtIdTipoPruebaCaminata"));
             int puntaje = gestor.obtenerResultado(idCateg, idPrueba, idGenero, timeCaminata);
 
             puntajeAcum += puntaje;
             cantPruebasRendidas++;
 
-            DetalleExamen de = new DetalleExamen( idPrueba, fechaExamen, timeCaminata, puntaje, idProfe, obs);
+            DetalleExamen de = new DetalleExamen(idPrueba, fechaExamen, timeCaminata, puntaje, idProfe, obs);
             e.agregarDetalles(de);
 //            gestor.registrarDetalleExamen(de);
 
         }
 
-        
         //Al final, para garantizar la atomicidad de la transaccion se hacen todos
         //los inserts a la BD en un mismo metodo en 'AccesoBaseDatos'
         gestor.registrarExamen(e);
-        
+
         String msj = "Registró correctamente el examen";
         request.setAttribute("msj", msj);
-        
+
         String path = request.getContextPath();
         response.sendRedirect(path + "/exitoCarga.jsp");
-                
+
 //        RequestDispatcher rd = request.getRequestDispatcher("exitoCarga.jsp");
 //        rd.forward(request, response);
-
     }
 
     /**

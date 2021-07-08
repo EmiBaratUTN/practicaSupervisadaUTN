@@ -7,26 +7,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="gestor" scope="request" class="controller.AccesoBaseDatos"/>
-
+<%@include file="estilos.jsp" %>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>-->
         <title>EditarAlumno</title>
 
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
         <div class="container">
             <h1>Formulario Edición de Alumno</h1>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
+            <!--<c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                 <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+            </c:if>-->
 
 
             <form action="EditarAlumno" name="formEditarALumno" method="POST">
@@ -55,7 +56,7 @@
                         <input min="1950-01-01" max="${LocalDate}" value="${alumno.fechaNacimiento.trim()}" autocomplete="on" type="date" name="dateFechaNac" class="form-control" id="dateFechaNac" required="required">
 
                         <label class="form-label" for="cmbGeneros">Género</label>
-                        <select class="form-select" id="cmbGeneros" name="cmbGeneros" required="required">
+                        <select class="form-control" id="cmbGeneros" name="cmbGeneros" required="required">
                             <option selected  value="${alumno.genero}">${gestor.buscarGenero(alumno.genero).nombreGenero}</option>
                             <c:forEach items="${ gestor.listarGeneros()}" var="item">
                                 <option value="${ item.idGenero }">${ item.nombreGenero }</option>
@@ -65,7 +66,7 @@
                     <div class="col-1"></div>
                     <div class="col-5">
                         <label class="form-label" for="cmbGrados">Grado</label>
-                        <select class="form-select" id="cmbGrados" name="cmbGrados" required="required">
+                        <select class="form-control" id="cmbGrados" name="cmbGrados" required="required">
                             <option selected  value="${alumno.grado}">${gestor.buscarGrado(alumno.grado).nombreGrado.trim()}</option>
                             <c:forEach items="${ gestor.listarGrados()}" var="item">
                                 <option value="${ item.idGrado }">${ item.nombreGrado }</option>
@@ -73,7 +74,7 @@
                         </select>
 
                         <label class="form-label" for="cmbGrSang">Grupo Sanguineo</label>
-                        <select class="form-select" id="cmbGrSang" name="cmbGrSang">
+                        <select class="form-control" id="cmbGrSang" name="cmbGrSang">
                             <option selected  value="${alumno.grupoSanguineo}">${gestor.buscarGrupoSanguineo(alumno.grupoSanguineo).grupoSanguineo.trim()}</option>
                             <c:forEach items="${ gestor.listarGruposSanguineos()}" var="item">
                                 <option value="${ item.idGrupoSanguineo }">${ item.grupoSanguineo }</option>
@@ -81,7 +82,7 @@
                         </select>
 
                         <label class="form-label" for="cmbFacSang">Factor Sanguineo</label>
-                        <select class="form-select" id="cmbFacSang" name="cmbFacSang">
+                        <select class="form-control" id="cmbFacSang" name="cmbFacSang">
                             <option selected  value="${alumno.factorSanguineo}">${gestor.buscarFactorSanguineo(alumno.factorSanguineo).factorSanguineo.trim()}</option>
                             <c:forEach items="${ gestor.listarFactorSanguineos()}" var="item">
                                 <option value="${ item.idFactorSanguineo }">${ item.factorSanguineo }</option>

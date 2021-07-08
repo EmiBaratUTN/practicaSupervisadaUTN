@@ -90,70 +90,73 @@ public class ListarAlumnos extends HttpServlet {
         HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
         if (user != null && !user.getNombreUsuario().equals("")) {
-            AccesoBaseDatos gestor = new AccesoBaseDatos();
-            Categoria c = new Categoria();
+            try {
+                AccesoBaseDatos gestor = new AccesoBaseDatos();
+                Categoria c = new Categoria();
 
-            //Agregar los campos nuevos de filtro
-            String txtNombreAlumno = request.getParameter("txtNombreAlumno");
-            String txtApellidoAlumno = request.getParameter("txtApellidoAlumno");
-            int idCategoriaSelected = Integer.parseInt(request.getParameter("cboCategorias"));
+                //Agregar los campos nuevos de filtro
+                String txtNombreAlumno = request.getParameter("txtNombreAlumno");
+                String txtApellidoAlumno = request.getParameter("txtApellidoAlumno");
+                int idCategoriaSelected = Integer.parseInt(request.getParameter("cboCategorias"));
 
 //        int idAlumno = Integer.parseInt(request.getParameter("hiddenIdAlumno"));
-            int codEstadistico = 0;
-            int dni = 0;
-            if (!request.getParameter("txtCodEstadistico").equals("")) {
-                codEstadistico = Integer.parseInt(request.getParameter("txtCodEstadistico"));
-            }
-            if (!request.getParameter("txtDni").equals("")) {
-                dni = Integer.parseInt(request.getParameter("txtDni"));
-            }
-            
-            
-            
-            int idGenero = Integer.parseInt(request.getParameter("cmbTipoGenero"));
-            int grado = Integer.parseInt(request.getParameter("cmbTipoGrado"));
-
-            String sqlWhereTxt = "where 1 = 1 ";
-
-            //Agragar las condiciones de filtrado nuevas
-            if (!txtNombreAlumno.equals("")) {
-                sqlWhereTxt += "and a.nombres like '" + txtNombreAlumno + "%' ";
-            }
-
-            if (!txtApellidoAlumno.equals("")) {
-                sqlWhereTxt += "and a.apellido like '" + txtApellidoAlumno + "%' ";
-            }
-
-            if (idCategoriaSelected != 0) {
-                ArrayList<model.Categoria> lista = gestor.listarCategorias();
-                for (Categoria categoria : lista) {
-                    if (categoria.getIdCategoria() == idCategoriaSelected) {
-                        c = categoria;
-                    }
+                int codEstadistico = 0;
+                int dni = 0;
+                if (!request.getParameter("txtCodEstadistico").equals("") && request.getParameter("txtCodEstadistico").length() < 10) {
+                    codEstadistico = Integer.parseInt(request.getParameter("txtCodEstadistico").trim());
+                }
+                if (!request.getParameter("txtDni").equals("") && request.getParameter("txtDni").length() < 10) {
+                    dni = Integer.parseInt(request.getParameter("txtDni").trim());
                 }
 
-                sqlWhereTxt += "and DATEDIFF(YEAR,fechaNac,GETDATE()) between " + c.getEdadMinima() + "and " + c.getEdadMaxima() + " ";
-            }
+                int idGenero = Integer.parseInt(request.getParameter("cmbTipoGenero"));
+                int grado = Integer.parseInt(request.getParameter("cmbTipoGrado"));
 
-            if (codEstadistico != 0) {
-                sqlWhereTxt += "and a.codigoEstadistico = " + codEstadistico + " ";
-            }
-            if (dni != 0) {
-                sqlWhereTxt += "and a.matriculaIndividual = " + dni + " ";
-            }
-            
-            if (idGenero != 0) {
-                sqlWhereTxt += "and a.idGenero = " + idGenero + " ";
-            }
-            if (grado != 0) {
-                sqlWhereTxt += "and a.idGrado = " + grado + " ";
-            }
+                String sqlWhereTxt = "where 1 = 1 ";
 
-            ArrayList listaFiltrada = gestor.listarAlumnosFiltrados(sqlWhereTxt);
-            request.setAttribute("listaAlumnos", listaFiltrada);
+                //Agragar las condiciones de filtrado nuevas
+                if (!txtNombreAlumno.equals("")) {
+                    sqlWhereTxt += "and a.nombres like '" + txtNombreAlumno + "%' ";
+                }
 
-            RequestDispatcher rd = request.getRequestDispatcher("listadoAlumnos.jsp");
-            rd.forward(request, response);
+                if (!txtApellidoAlumno.equals("")) {
+                    sqlWhereTxt += "and a.apellido like '" + txtApellidoAlumno + "%' ";
+                }
+
+                if (idCategoriaSelected != 0) {
+                    ArrayList<model.Categoria> lista = gestor.listarCategorias();
+                    for (Categoria categoria : lista) {
+                        if (categoria.getIdCategoria() == idCategoriaSelected) {
+                            c = categoria;
+                        }
+                    }
+
+                    sqlWhereTxt += "and DATEDIFF(YEAR,fechaNac,GETDATE()) between " + c.getEdadMinima() + "and " + c.getEdadMaxima() + " ";
+                }
+
+                if (codEstadistico != 0) {
+                    sqlWhereTxt += "and a.codigoEstadistico = " + codEstadistico + " ";
+                }
+                if (dni != 0) {
+                    sqlWhereTxt += "and a.matriculaIndividual = " + dni + " ";
+                }
+
+                if (idGenero != 0) {
+                    sqlWhereTxt += "and a.idGenero = " + idGenero + " ";
+                }
+                if (grado != 0) {
+                    sqlWhereTxt += "and a.idGrado = " + grado + " ";
+                }
+
+                ArrayList listaFiltrada = gestor.listarAlumnosFiltrados(sqlWhereTxt);
+                request.setAttribute("listaAlumnos", listaFiltrada);
+
+                RequestDispatcher rd = request.getRequestDispatcher("listadoAlumnos.jsp");
+                rd.forward(request, response);
+            } catch (Exception e) {
+                RequestDispatcher rd = request.getRequestDispatcher("errorCarga.jsp");
+                rd.forward(request, response);
+            }
 
         } else {
             String msjNoUser = "No hay usuario logueado.\nIngrese sus credenciales.";

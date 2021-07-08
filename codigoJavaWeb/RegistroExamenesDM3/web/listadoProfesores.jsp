@@ -14,16 +14,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ControlUsers</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
         <div class="container">
             <h1>Listado de Profesores</h1>
-            <!--        <--con estas condiciones el link 'volver' dirije al menu adecuado para cada tipo de usuario-->
+            <!--        con estas condiciones el link 'volver' dirije al menu adecuado para cada tipo de usuario
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                 <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+            </c:if>-->
 
 
             <!--            <h2>Filtrar Alumnos por...</h2>
@@ -125,7 +126,7 @@
 
                             <td><a class="btn btn-success" href="EstadoProfesor?estado=1&idProfe=${profe.idProfesor}">Dar de baja</a></td>
                             <td><a class="btn btn-primary" href="EstadoProfesor?estado=2&idProfe=${profe.idProfesor}">Cancelar Baja</a></td>
-                            <td><a class="btn btn-primary" href="EstadoProfesor?estado=3&idProfe=${profe.idProfesor}">Eliminar</a></td>                            
+                            <!--<td><a class="btn btn-primary" href="EstadoProfesor?estado=3&idProfe=${profe.idProfesor}">Eliminar</a></td>-->                            
 
                         </tr>
                     </c:forEach>

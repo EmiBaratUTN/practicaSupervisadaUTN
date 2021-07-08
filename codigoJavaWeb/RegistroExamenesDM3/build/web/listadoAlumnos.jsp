@@ -14,15 +14,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Listado Alumnos</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
+
         <div class="container">
             <h1>Listado de Alumnos </h1>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-            </c:if>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+            
 
 
             <h2>Filtrar Alumnos por...</h2>
@@ -54,11 +51,11 @@
                 <div style="align-items: flex-end " class="row">
                     <div style="padding-right:1px" class="col-auto">
                         <label class="form-label d-block" for="codEstadistico">...codigo estadístico</label>
-                        <input class="form-control d-block" type="text" name="txtCodEstadistico" id="codEstadistico"/>
+                        <input class="form-control d-block" type="number" name="txtCodEstadistico" id="codEstadistico"/>
                     </div>
                     <div style="padding-right:1px" class="col-auto">
                         <label class="form-label d-block" for="dni">...dni</label>
-                        <input class="form-control d-block" type="text" name="txtDni" id="dni"/>
+                        <input class="form-control d-block" type="number" name="txtDni" id="dni"/>
                     </div>
 
                     <div style="padding-right:1px" class="col-auto">

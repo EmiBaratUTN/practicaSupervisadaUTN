@@ -14,19 +14,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body style="background-color: activecaption">
+    <body style="">
+        <%@include file="header.jsp" %>
         <div class="container">
             <h1>Registro de peso del alumno ${alumno.nombre} ${alumno.apellido} </h1>
-            <a style="margin-right: 50px; color: darkblue" class="" href="ListarAlumnosPeso">Volver a listado de alumnos</a>
+            <!--<a style="margin-right: 50px; color: darkblue" class="" href="ListarAlumnosPeso">Volver a listado de alumnos</a>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                 <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>
+            </c:if>-->
         </div>
 
-        <div class="container-fluid">
+        <div class="container">
             <table class="table table-centered table-striped table-bordered">
                 <thead >
                     <tr  class="">
