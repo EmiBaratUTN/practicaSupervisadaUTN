@@ -90,7 +90,7 @@
             </form>
 
         </div>
-        <div class="container-fluid"> 
+        <div class="container"> 
             <table class="table table-striped table-center table-centered text-center table-bordered">
 
                 <thead>

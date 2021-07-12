@@ -74,74 +74,75 @@
 
             </div>
         </div>
-        <table style="width: 100%" class="table table-centered table-striped table-bordered">
-            <thead style="background-color: darkgray" >
-                <tr  class="">
-                    <th colspan="3">Examen</th>                
-                    <!--<th style="vertical-align: middle" rowspan="2">Profesor</th>-->
-                    <th style="vertical-align: middle" rowspan="2">Categoria</th>
-                    <th colspan="2">Carrera</th>
-                    <th colspan="2">Flexiones</th>
-                    <th colspan="2">Barras</th>
-                    <th colspan="2">Abdominales</th>
-                    <th colspan="2">Caminata</th>
-                    <th style="vertical-align: middle" rowspan="2">Nota Final</th>
-                    <th style="vertical-align: middle" rowspan="2" colspan="2">Acciones</th>
-                </tr>
-                <tr>
-                    <th>Nro</th>
-                    <th>Tipo</th>
-                    <th>Fecha</th>
-                    <th>Tiempo</th>
-                    <th>Nota</th>
-                    <th>Rep</th>
-                    <th>Nota</th>
-                    <th>Rep</th>
-                    <th>Nota</th>
-                    <th>Rep</th>
-                    <th>Nota</th>                        
-                    <th>Tiempo</th>
-                    <th>Nota</th>                        
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <c:forEach items="${examenes}" var="item">
-                    <tr>
-                        <td>${item.idExamen}</td>
-                        <td>${item.tipoExamen.trim()}</td>
-                        <td>${item.fechaExamen}</td>
-                        <!--<td>${item.apellidoProfe}</td>-->
-                        <td>${item.categoria}</td>
-
-                        <!--HAGO UN FOREEACH CON UN DTO QUE TRAIGA LAS PRUEBAS RENDIDAS EN ESE EXAMEN
-                        Y LO RECORRO Y LLENO LA TABLA SEGUN TRAJO O NO DATOS... IF(RESULTADO)DATOS ELSE SIN REGISTRO-->
-
-                        <c:forEach items="${gestor.listarPruebasRendidasXIdExamen(item.idExamen)}" var="elemento">
-
-                            <c:if  test="${elemento.resultado != 0}" >
-                                <td>${elemento.resultado}</td>
-                                <td>${elemento.puntaje}</td>
-                            </c:if>
-                            <!--ESTO VA AFUNCIONAR CUANDO A LOS DETALLE DE EXAMEN LES PONGA RESULTADO 0 CUANDO NO RINDEN LA PRUEBA-->
-                            <c:if test="${elemento.resultado == 0}" >
-                                <td>sin dato</td>
-                                <td>sin dato</td>
-                            </c:if>
-
-                        </c:forEach>
-
-                        <td>${item.notaFinal}</td>
-                        <td><a class="btn btn-primary" href="EditarExamen?idExamen=${item.idExamen}">Editar</a></td>
-                        <!--<td><a class="btn btn-primary" href="EliminarExamen?idExamen=${item.idExamen}">Eliminar</a></td>-->
-
-
+        <div >
+            <table style="width: 100%" class="table table-centered table-striped table-bordered">
+                <thead style="background-color: darkgray" >
+                    <tr  class="">
+                        <th colspan="3">Examen</th>                
+                        <!--<th style="vertical-align: middle" rowspan="2">Profesor</th>-->
+                        <th style="vertical-align: middle" rowspan="2">Categoria</th>
+                        <th colspan="2">Carrera</th>
+                        <th colspan="2">Flexiones</th>
+                        <th colspan="2">Barras</th>
+                        <th colspan="2">Abdominales</th>
+                        <th colspan="2">Caminata</th>
+                        <th style="vertical-align: middle" rowspan="2">Nota Final</th>
+                        <th style="vertical-align: middle" rowspan="2" colspan="2">Acciones</th>
                     </tr>
-                </c:forEach>
+                    <tr>
+                        <th>Nro</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Tiempo</th>
+                        <th>Nota</th>
+                        <th>Rep</th>
+                        <th>Nota</th>
+                        <th>Rep</th>
+                        <th>Nota</th>
+                        <th>Rep</th>
+                        <th>Nota</th>                        
+                        <th>Tiempo</th>
+                        <th>Nota</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <c:forEach items="${examenes}" var="item">
+                        <tr>
+                            <td>${item.idExamen}</td>
+                            <td>${item.tipoExamen.trim()}</td>
+                            <td>${item.fechaExamen}</td>
+                            <!--<td>${item.apellidoProfe}</td>-->
+                            <td>${item.categoria}</td>
 
-            </tbody>
-        </table>
+                            <!--HAGO UN FOREEACH CON UN DTO QUE TRAIGA LAS PRUEBAS RENDIDAS EN ESE EXAMEN
+                            Y LO RECORRO Y LLENO LA TABLA SEGUN TRAJO O NO DATOS... IF(RESULTADO)DATOS ELSE SIN REGISTRO-->
 
+                            <c:forEach items="${gestor.listarPruebasRendidasXIdExamen(item.idExamen)}" var="elemento">
+
+                                <c:if  test="${elemento.resultado != 0}" >
+                                    <td>${elemento.resultado}</td>
+                                    <td>${elemento.puntaje}</td>
+                                </c:if>
+                                <!--ESTO VA AFUNCIONAR CUANDO A LOS DETALLE DE EXAMEN LES PONGA RESULTADO 0 CUANDO NO RINDEN LA PRUEBA-->
+                                <c:if test="${elemento.resultado == 0}" >
+                                    <td>sin dato</td>
+                                    <td>sin dato</td>
+                                </c:if>
+
+                            </c:forEach>
+
+                            <td>${item.notaFinal}</td>
+                            <td><a class="btn btn-primary" href="EditarExamen?idExamen=${item.idExamen}">Editar</a></td>
+                            <!--<td><a class="btn btn-primary" href="EliminarExamen?idExamen=${item.idExamen}">Eliminar</a></td>-->
+
+
+                        </tr>
+                    </c:forEach>
+
+                </tbody>
+            </table>
+        </div>
 
     </body>
 </html>

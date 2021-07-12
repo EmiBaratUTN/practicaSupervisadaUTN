@@ -18,7 +18,7 @@
         <%@include file="header.jsp" %>
         <div class="container">
             <h1>Terminos y condiciones</h1>
-            <p>
+            <p aling>
                 Bienvenido a "Sistema de gestion de examenes de EduFis" proporcionado por Emiliano Inc. (la "Compañía",
                 "nosotros" o "nos"). Nos complace ofrecerle acceso al Servicio (como se define más
                 abajo), sujeto a estos términos y condiciones (los "Términos de Servicio") y a la Política
@@ -90,7 +90,7 @@
                 notificaciones mediante documento escrito.</p>
             
                 <h6>Propiedad intelectual.</h6>
-            <p>    El software en Argentina está protegido por la ley 11.723, que regula la propiedad
+                <p style="text-align: justify">    El software en Argentina está protegido por la ley 11.723, que regula la propiedad
                 intelectual y los derechos de autor de todos aquellos creadores de obras artísticas,
                 literarias y científicas.</p>
            

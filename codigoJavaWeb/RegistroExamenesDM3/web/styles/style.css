@@ -6,6 +6,9 @@ body{
     border:1px solid #5B8A72 !important;
 
 }
+p{
+    text-align: justify;
+}
 
 .nav .nav-link {
     color: white;

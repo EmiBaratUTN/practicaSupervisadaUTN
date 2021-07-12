@@ -19,7 +19,7 @@
         <div class="container">
             <h1>Listado de Examenes</h1>
             <h3>${msj}</h3>
-        
+
             <!--<c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                 <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
             </c:if>
@@ -99,7 +99,7 @@
 
         </div>
 
-        <div>
+        <div class="container">
             <!--EN ESTA TABLA MUESTRO LOS RESULTADOS.-->
             <table class="table table-centered table-striped table-bordered">
                 <thead>
