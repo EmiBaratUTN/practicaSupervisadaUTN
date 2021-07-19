@@ -58,6 +58,126 @@ public class AccesoBaseDatos {
     private String PASS = "administrador";
 
     //----------LISTADOS----------
+    //LISTAR PESAJES FILTRADOS
+    public ArrayList<Pesaje> listarPesajesFiltrados(String filtro) {
+
+        ArrayList<Pesaje> lista = new ArrayList<>();
+        boolean seguimiento = false;
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+
+            String sql = "select *\n"
+                    + "from pesajes p\n"
+                    + "inner join alumnos a on a.idAlumno = p.idAlumno\n"
+                    + "inner join tiposEstadosPeso tp on tp.idTipoEstadosPeso = p.idEstadoPeso " + filtro;
+
+            PreparedStatement st = conn.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                int idPesaje = rs.getInt(1);
+                int idAlumno = rs.getInt(2);
+                Alumno a = buscarAlumnoModel(idAlumno);
+                int idEstadoPeso = rs.getInt(3);
+                TipoDeEstadoPeso tipoEst = buscarEstadoPesoPorId(idEstadoPeso);
+                String fechaPesaje = rs.getString(4);
+                double peso = rs.getDouble(5);
+
+                String obs = rs.getString(6);
+                int bitSeguimiento = rs.getInt(7);
+                if (bitSeguimiento != 0) {
+                    seguimiento = true;
+                }
+                double imc = rs.getDouble(8);
+
+                Pesaje p = new Pesaje(idPesaje, a, tipoEst, fechaPesaje, peso, obs, seguimiento, imc);
+                lista.add(p);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+    //LISTADOS DE SITUACIONES DE PESO
+    public ArrayList<TipoDeEstadoPeso> listarEstadoPeso() {
+
+        ArrayList<TipoDeEstadoPeso> lista = new ArrayList<>();
+
+        try {
+
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+
+            String sql = "select *\n"
+                    + "	from tiposEstadosPeso";
+            PreparedStatement st = conn.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                int idEstadoPeso = rs.getInt(1);
+                String descripcion = rs.getString(2);
+                String obs = rs.getString(3);
+                double imcMin = rs.getDouble(4);
+                double imcMax = rs.getDouble(5);
+
+                TipoDeEstadoPeso estPeso = new TipoDeEstadoPeso(idEstadoPeso, descripcion, obs, imcMin, imcMax);
+                lista.add(estPeso);
+            }
+
+            rs.close();
+            st.close();
+            conn.close();
+
+        } catch (Exception e) {
+        }
+
+        return lista;
+
+    }
+
+    //LISTADO DE TODOS LOS PESAJES
+    public ArrayList<Pesaje> listarPesoTodos() {
+
+        ArrayList<Pesaje> lista = new ArrayList<>();
+        boolean seguimiento = false;
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+
+            String sql = "select * from pesajes";
+
+            PreparedStatement st = conn.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                int idPesaje = rs.getInt(1);
+                int idAlumno = rs.getInt(2);
+                Alumno a = buscarAlumnoModel(idAlumno);
+                int idEstadoPeso = rs.getInt(3);
+                TipoDeEstadoPeso tipoEst = buscarEstadoPesoPorId(idEstadoPeso);
+                String fechaPesaje = rs.getString(4);
+                double peso = rs.getDouble(5);
+
+                String obs = rs.getString(6);
+                int bitSeguimiento = rs.getInt(7);
+                if (bitSeguimiento != 0) {
+                    seguimiento = true;
+                }
+                double imc = rs.getDouble(8);
+
+                Pesaje p = new Pesaje(idPesaje, a, tipoEst, fechaPesaje, peso, obs, seguimiento, imc);
+                lista.add(p);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
     //listado de usuarios para administracion
     public ArrayList<Usuario> listarUsuarios() {
         ArrayList<Usuario> lista = new ArrayList<>();
@@ -2092,7 +2212,7 @@ public class AccesoBaseDatos {
 
     //---------------ELIMINAR--------------------
     //ELIMINAR PESAJE
-     public void eliminarPesaje(int idPesaje) {
+    public void eliminarPesaje(int idPesaje) {
 
         try {
             Connection conn = DriverManager.getConnection(CONN, USER, PASS);
@@ -2112,8 +2232,7 @@ public class AccesoBaseDatos {
         }
 
     }
-    
-    
+
     //Eliminar usuarios
     public void eliminarUsuario(int idUsuario) {
 

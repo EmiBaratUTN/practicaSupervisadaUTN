@@ -94,6 +94,9 @@
                     <div class="col-auto">
                         <a href="ListarExamenes" class="btn btn-primary mb-2">Deshacer los filtros</a>
                     </div>
+                    <div class="col-auto">
+                        <a href="ReporteExamenes" class="btn btn-primary mb-2">Generara Reporte</a>
+                    </div>
                 </div>
             </form>
 

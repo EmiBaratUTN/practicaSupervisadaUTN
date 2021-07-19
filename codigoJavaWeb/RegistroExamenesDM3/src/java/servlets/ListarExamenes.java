@@ -10,6 +10,8 @@ import dtoModel.ListadoAlumnosDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,6 +60,8 @@ public class ListarExamenes extends HttpServlet {
             AccesoBaseDatos gestor = new AccesoBaseDatos();
             ArrayList listaExamenes = gestor.listarTodosExamenes();
             request.setAttribute("listaExamenes", listaExamenes);
+            session.setAttribute("listaExamenesReportFiltrada", listaExamenes);
+
 
             //le paso las categorias al JSP
             ArrayList categorias = gestor.listarCategorias();
@@ -132,6 +136,11 @@ public class ListarExamenes extends HttpServlet {
 
         ArrayList listaFiltrada = gestor.listarExamenesFiltrados(sqlWhereTxt);
         request.setAttribute("listaExamenes", listaFiltrada);
+        
+        //Pongo la listaFiltrada en Session para poder obtenerla desde el servlet
+        //que genera el reporte
+        HttpSession session = request.getSession();
+        session.setAttribute("listaExamenesReportFiltrada", listaFiltrada);
 
 //        ListadoAlumnosDTO alumno = gestor.buscarAlumno(idAlumno);
 //        request.setAttribute("alumno", alumno);    

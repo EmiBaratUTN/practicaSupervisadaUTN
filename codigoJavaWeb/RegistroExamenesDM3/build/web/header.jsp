@@ -28,20 +28,6 @@
                         <li><a class="dropdown-item" href="ListarAlumnos">Listado</a></li>
                     </ul>
                 </li>
-
-                <!--            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>-->
-
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownExamenes" role="button" data-toggle="dropdown">Examenes</a>
                     <ul class="dropdown-menu">
@@ -49,8 +35,16 @@
                         <li><a class="dropdown-item" href="ListarExamenes">Listado</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPesajes" role="button" data-toggle="dropdown">Pesajes</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ListarAlumnosPeso" class="dropdown-item">Alta pesaje</a></li>
+                        <li><a class="dropdown-item" href="ListarPesosTodos">Listado</a></li>
+                        <!--<li><a class="dropdown-item" href="ReportePeso">Reporte</a></li>-->
+                    </ul>
+                </li>
 
-                <li><a href="ListarAlumnosPeso" class="nav-link px-2 link-dark">Registro de peso</a></li>
+                
 
                 <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
                     <li class="nav-item dropdown">
