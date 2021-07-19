@@ -4,9 +4,11 @@
     Author     : Emiliano Barat
 --%>
 
+<%@page import="org.jfree.chart.ChartUtilities"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="estilos.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="gestor" scope="request" class="controller.AccesoBaseDatos" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,6 +42,16 @@
 
 
                 <div class="col-auto">
+                    <form action="GraficoBarrasNotasPorPruebaTodos" >
+                        <label class="form-label" for="categorias">Categoria</label>
+                        <select class="form-control" id="categorias" name="cboCategorias">
+                            <c:forEach items="${gestor.listarCategorias()}" var="item">
+                                <option value="${item.idCategoria}">${item.descripcion}</option>
+                            </c:forEach>
+                            <option value="0" selected=""></option>
+                        </select>
+                        <input type="submit" class="btn btn-primary" value="Filtrar datos">
+                    </form>
                     <img src="/RegistroExamenesDM3/GraficoBarrasNotasPorPruebaTodos"></img>
                 </div>
             </div>

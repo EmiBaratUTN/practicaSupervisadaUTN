@@ -33,7 +33,7 @@
 
                 <a class="btn link-footer " href="terminosCondiciones.jsp">Terminos y condiciones</a>
                 <a class="btn link-footer" href="./contactoFormulario.jsp">Contacto</a>
-                <a class="btn link-footer" href="#">FAQ</a>
+                <a class="btn link-footer" href="faq.jsp">FAQ</a>
             </div>
         </footer>
     </body>

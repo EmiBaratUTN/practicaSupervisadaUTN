@@ -20,11 +20,25 @@
     </head>
     <body style="">
         <%@include file="header.jsp" %>
+        <div class="container">
+            <h1>Sección de Acondicionamiento Psicofísico Profesional</h1>
+            <br/>
+            <div class="row d-flex">
+                <div class="col-6">            
+                    <h2>Destacamento movil 3 - Sarg Ayudante Ramón Gumersindo Acosta</h2>
+                    <br/>
+                    <h3>Sistema de gestion de alumnos, exámenes y control de peso</h3>
+                </div>
+                <div class="col-6">            
+                    <img src="img/Escuela-de-Oficiales-de-Gendarmeria-Nacional-3.jpg">
+                </div>
+            </div>
+        </div>
         <footer class="footer footer-principal fixed-bottom mt-auto py-3">
             <div class="container d-flex justify-content-md-between">
-                <a class="btn link-footer " href="#">Terminos y condiciones</a>
+                <a class="btn link-footer " href="terminosCondiciones.jsp">Terminos y condiciones</a>
                 <a class="btn link-footer" href="./contactoFormulario.jsp">Contacto</a>
-                <a class="btn link-footer" href="#">FAQ</a>
+                <a class="btn link-footer" href="faq.jsp">FAQ</a>
             </div>
         </footer>
     </body>

@@ -7,10 +7,12 @@ package servlets;
 
 import controller.AccesoBaseDatos;
 import dtoModel.PruebasPromedioDTO;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,24 +45,37 @@ public class GraficoBarrasNotasPorPruebaTodos extends HttpServlet {
 
         response.setContentType("image/PNG");
         OutputStream out = response.getOutputStream();
-
+        ArrayList<PruebasPromedioDTO> pruebasPromedios = new ArrayList();
+        int idCateg;
         try {
             AccesoBaseDatos gestor = new AccesoBaseDatos();
-            ArrayList<PruebasPromedioDTO> pruebasPromedios = gestor.contarPruebaPromedio();
+            try {
+                idCateg = Integer.parseInt(request.getParameter("cboCategorias"));
+                if (idCateg == 0) {
+                    pruebasPromedios = gestor.contarPruebaPromedio();
+                }else{
+                    pruebasPromedios = gestor.contarPruebaPromedio(idCateg);
+                }
+                
+            } catch (Exception e) {
+                pruebasPromedios = gestor.contarPruebaPromedio();
+            }
             
             DefaultCategoryDataset data = new DefaultCategoryDataset();
             for (PruebasPromedioDTO item : pruebasPromedios) {
                 data.setValue(item.getPromedio(), item.getPrueba(), item.getPrueba());
             }
             JFreeChart chart = ChartFactory.createBarChart("PROMEDIO DE PUNTAJE POR PRUEBA DEL PERSONAL", "PRUEBAS", "NOTAS", data, PlotOrientation.VERTICAL, true, true, true);
-            
-            int ancho = 500; int alto = 450;
-            
+
+            int ancho = 500;
+            int alto = 450;
+
             ChartUtilities.writeChartAsPNG(out, chart, ancho, alto);
-            
+
         } catch (Exception e) {
 
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

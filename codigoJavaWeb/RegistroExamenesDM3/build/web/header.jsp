@@ -12,7 +12,7 @@
             </c:if>
             <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
                 <a href="menuUsuario.jsp" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                    <img width="100px" src="img/gendarmeriaEmblem.png">
+                    <img width="100px" src="img/gendarmeriaEmblem.png"> <span style="color: white; padding-left: 5px">HOME</span>
                 </a>
             </c:if>
             <!--            <a href="" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -61,9 +61,17 @@
                             <li><a class="dropdown-item" href="ControlUsuarios">Listado usuarios</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownExamenes" role="button" data-toggle="dropdown">Graficos Filtro</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="filtroGraficosExamen.jsp">de Exámenes</a></li>
+                            <li><a class="dropdown-item" href="filtroGraficosPesaje.jsp">de Pesajes</a></li>
+                        </ul>
+                    </li>
                     <!--                    <li><a href="#" class="nav-link px-2 link-dark">Profesores</a></li>
                                         <li><a href="#" class="nav-link px-2 link-dark">Usuarios</a></li>-->
-                    <li><a href="visualGraficos.jsp" class="nav-link px-2 link-dark">Graficos estadisticos</a></li>
+                    <!--<li><a href="visualGraficos.jsp" class="nav-link px-2 link-dark">Graficos estadisticos</a></li>-->
+                    <!--<li><a href="visualGraficos.jsp" class="nav-link px-2 link-dark">Graficos estadisticos</a></li>-->
                     </c:if>
 
 

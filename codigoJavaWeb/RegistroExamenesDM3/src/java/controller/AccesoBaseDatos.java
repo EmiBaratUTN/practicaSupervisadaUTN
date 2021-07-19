@@ -2099,13 +2099,82 @@ public class AccesoBaseDatos {
 
         try {
             Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+            String sql = "select tp.descripcion Prueba, AVG(de.puntajeObtenido) Promedio\n"
+                    + "     from detalleExamenes de\n"
+                    + "         inner join tiposPruebas tp on tp.idPrueba = de.idPrueba\n"
+                    + "         inner join examenes e on de.idExamen = e.idExamen\n"
+                    + "     where puntajeObtenido != 0\n"
+                    + "     group by tp.descripcion";
+            PreparedStatement st = conn.prepareStatement(sql);
 
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select tp.descripcion Prueba, AVG(de.puntajeObtenido) Promedio\n"
-                    + "from detalleExamenes de\n"
-                    + "	inner join tiposPruebas tp on tp.idPrueba = de.idPrueba\n"
-                    + "where puntajeObtenido != 0\n"
-                    + "group by tp.descripcion");
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                String prueba = rs.getString("prueba");
+                double promedio = rs.getDouble("promedio");
+                PruebasPromedioDTO pp = new PruebasPromedioDTO(prueba, promedio);
+                lista.add(pp);
+            }
+            rs.close();
+            st.close();
+            conn.close();
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+
+    //El parametro se lo pasa el usuario con el cbm de jsp de visualizarGraficos
+    //para que sea "parametrizable".
+    public ArrayList<PruebasPromedioDTO> contarPruebaPromedio(int categ) {
+
+        ArrayList<PruebasPromedioDTO> lista = new ArrayList<>();
+
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+            String sql = "select tp.descripcion Prueba, AVG(de.puntajeObtenido) Promedio\n"
+                    + "     from detalleExamenes de\n"
+                    + "         inner join tiposPruebas tp on tp.idPrueba = de.idPrueba\n"
+                    + "         inner join examenes e on de.idExamen = e.idExamen\n"
+                    + "     where puntajeObtenido != 0\n"
+                    + "         and e.idCategoria = ?\n"
+                    + "     group by tp.descripcion";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, categ);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                String prueba = rs.getString("prueba");
+                double promedio = rs.getDouble("promedio");
+                PruebasPromedioDTO pp = new PruebasPromedioDTO(prueba, promedio);
+                lista.add(pp);
+            }
+            rs.close();
+            st.close();
+            conn.close();
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+
+    //Metodo para los datos del grafico filtrado
+    public ArrayList<PruebasPromedioDTO> contarPruebaPromedioFiltrado(String queryWhere) {
+
+        ArrayList<PruebasPromedioDTO> lista = new ArrayList<>();
+
+        try {
+            Connection conn = DriverManager.getConnection(CONN, USER, PASS);
+            String sql = "select tp.descripcion Prueba, AVG(de.puntajeObtenido) Promedio\n"
+                    + "                         from detalleExamenes de\n"
+                    + "                             inner join tiposPruebas tp on tp.idPrueba = de.idPrueba\n"
+                    + "                             inner join examenes e on de.idExamen = e.idExamen\n"
+                    + "                         where puntajeObtenido != 0\n"
+                    + queryWhere
+                    + "                         group by tp.descripcion";
+            PreparedStatement st = conn.prepareStatement(sql);
+//            st.setInt(1, categ);
+            ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
                 String prueba = rs.getString("prueba");

@@ -73,6 +73,7 @@ public class ReporteExamenes extends HttpServlet {
                 examen.setIdExamen(item.getIdExamen());
                 examen.setNotaFinal(item.getNotaFinal());
                 examen.setTipoExamen(item.getTipoExamen());
+                examen.setApellidoProfe(item.getApellidoProfe());
                 lista.add(examen);
             }
             
