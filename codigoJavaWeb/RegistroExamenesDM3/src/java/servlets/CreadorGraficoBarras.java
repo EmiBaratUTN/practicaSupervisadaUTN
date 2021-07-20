@@ -32,7 +32,7 @@ public class CreadorGraficoBarras extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * methods. 
      *
      * @param request servlet request
      * @param response servlet response

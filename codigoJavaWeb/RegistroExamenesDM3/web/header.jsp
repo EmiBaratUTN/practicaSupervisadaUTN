@@ -62,10 +62,10 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownExamenes" role="button" data-toggle="dropdown">Graficos Filtro</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownExamenes" role="button" data-toggle="dropdown">Gráficos Estadísticos</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="filtroGraficosExamen.jsp">de Exámenes</a></li>
-                            <li><a class="dropdown-item" href="filtroGraficosPesaje.jsp">de Pesajes</a></li>
+                            <li><a class="dropdown-item" href="visualGraficos.jsp">de Pesajes</a></li>
                         </ul>
                     </li>
                     <!--                    <li><a href="#" class="nav-link px-2 link-dark">Profesores</a></li>

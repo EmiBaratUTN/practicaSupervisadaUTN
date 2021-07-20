@@ -19,41 +19,15 @@
     <body style="">
         <%@include file="header.jsp" %>
         <div style="margin-bottom: 20px" class="container">
-            <h1>Mostrar Graficos estadisticos</h1>
-            <!--<c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario <= 1}" >
-                <a style="color: darkblue" href="menuAdmin.jsp">Volver al men&uacute; principal</a>
-            </c:if>
-            <c:if test="${sessionScope.usuario.tipoUsuario.idTipoUsuario >= 2}">
-                <a style="color: darkblue" href="menuUsuario.jsp">Volver al men&uacute; principal</a>
-            </c:if>-->
+            <h1>Distibución de peso del personal</h1>
+            
 
         </div>
         <div class="container">
-            <div class="row">
-                <!--            <div style="margin-bottom: 50px" class="row">
-                                <div class="col-auto">
-                                <img src="/RegistroExamenesDM3/GraficoTorta"></img>
-                            </div>-->
+            <div class="row">                
                 <div class="col-auto">
                     <img src="/RegistroExamenesDM3/GraficoPiePesoTodos"></img>
-                </div>
-
-                <br>
-
-
-                <div class="col-auto">
-                    <form action="GraficoBarrasNotasPorPruebaTodos" >
-                        <label class="form-label" for="categorias">Categoria</label>
-                        <select class="form-control" id="categorias" name="cboCategorias">
-                            <c:forEach items="${gestor.listarCategorias()}" var="item">
-                                <option value="${item.idCategoria}">${item.descripcion}</option>
-                            </c:forEach>
-                            <option value="0" selected=""></option>
-                        </select>
-                        <input type="submit" class="btn btn-primary" value="Filtrar datos">
-                    </form>
-                    <img src="/RegistroExamenesDM3/GraficoBarrasNotasPorPruebaTodos"></img>
-                </div>
+                </div>                
             </div>
         </div>
     </div>

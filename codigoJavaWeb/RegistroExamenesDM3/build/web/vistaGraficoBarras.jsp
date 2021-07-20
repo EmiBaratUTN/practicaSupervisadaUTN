@@ -26,10 +26,17 @@
     <body>
         <%@include file="header.jsp" %>
         <div class="container">
-            <h1>Su gráfico</h1>
+            
             <div class="row">
                 <div class="col-6">
-                    <h4>Seleccione los filtros para generar un nuevo gráfico</h4>
+                    <h1>Su gráfico</h1>
+                    <img src="/RegistroExamenesDM3/CreadorGraficoBarras">
+                </div>
+                <div class="col-6">
+                    <br>
+                    <br>
+                    <br>
+                    <h2>Seleccione los filtros para generar un nuevo gráfico</h2>
                     <form class="form d-block " action="GraficoExamenFiltrado" method="post">
                         <div class="form-group row">
                             <div class="col-auto">
@@ -92,9 +99,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-6">
-                    <img src="/RegistroExamenesDM3/CreadorGraficoBarras">
-                </div>
+                
             </div>
         </div>        
     </body>

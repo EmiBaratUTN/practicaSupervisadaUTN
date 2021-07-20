@@ -118,7 +118,7 @@ public class EditarPesaje extends HttpServlet {
             }
             String observaciones = request.getParameter("txtObservaciones");
 
-            double imc = peso / (talla * talla);
+            double imc = Math.round((peso / (talla*talla))*100.0)/100.0;
 
             TipoDeEstadoPeso estadoPeso = gestor.buscarEstadoPeso(imc);
             Alumno a = gestor.buscarAlumnoModel(idAlumno);

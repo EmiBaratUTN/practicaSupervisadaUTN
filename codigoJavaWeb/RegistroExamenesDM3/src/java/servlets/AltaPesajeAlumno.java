@@ -110,7 +110,7 @@ public class AltaPesajeAlumno extends HttpServlet {
         String observaciones = request.getParameter("txtObservaciones");
         
         double peso = Double.parseDouble(request.getParameter("txtPeso"));
-        double imc = peso / (talla*talla);
+        double imc = Math.round((peso / (talla*talla))*100.0)/100.0;
         
         TipoDeEstadoPeso estadoPeso = gestor.buscarEstadoPeso(imc);
         
