@@ -5,13 +5,11 @@
  */
 package servlets;
 
-import controller.AccesoBaseDatos;
 import dtoModel.PruebasPromedioDTO;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,14 +20,15 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
  * @author Emiliano Barat
  */
-@WebServlet(name = "GraficoExamenFiltrado", urlPatterns = {"/GraficoExamenFiltrado"})
-public class GraficoExamenFiltrado extends HttpServlet {
+@WebServlet(name = "CreadorGraficoBarras", urlPatterns = {"/CreadorGraficoBarras"})
+public class CreadorGraficoBarras extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,7 +41,25 @@ public class GraficoExamenFiltrado extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            HttpSession session = request.getSession();
+            DefaultCategoryDataset data = new DefaultCategoryDataset();
+            List<PruebasPromedioDTO> listaFiltro = (ArrayList<PruebasPromedioDTO>) session.getAttribute("listaExamenesGraficos");
+            for (PruebasPromedioDTO item : listaFiltro) {
+                data.setValue(item.getPromedio(), item.getPrueba(), item.getPrueba());
+            }
+            JFreeChart chart = ChartFactory.createBarChart("PROMEDIO DE PUNTAJE POR PRUEBA DEL PERSONAL", "PRUEBAS", "NOTAS", data, PlotOrientation.VERTICAL, true, true, true);
+            response.setContentType("image/JPEG");
+            OutputStream sa = response.getOutputStream();
+            int ancho = 500;
+            int alto = 450;
 
+            BarRenderer renderer = (BarRenderer) chart.getCategoryPlot().getRenderer();
+            renderer.setItemMargin(-2);
+
+            ChartUtilities.writeChartAsJPEG(sa, chart, ancho, alto);
+        } catch (Exception e) {
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,60 +88,7 @@ public class GraficoExamenFiltrado extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        AccesoBaseDatos gestor = new AccesoBaseDatos();
-        HttpSession session = request.getSession();
-
-        //Agregar los campos nuevos de filtro
-//        String txtNombreAlumno = request.getParameter("txtNombreAlumno");
-//        String txtApellidoAlumno = request.getParameter("txtApellidoAlumno");
-        int idCategoriaSelected = Integer.parseInt(request.getParameter("cboCategorias"));
-
-//        int idAlumno = Integer.parseInt(request.getParameter("hiddenIdAlumno"));
-        String fechaDesde = request.getParameter("dtpFechaDesdeExamen");
-        String fechaHasta = request.getParameter("dtpFechaHastaExamen");
-        int tipoExamen = Integer.parseInt(request.getParameter("cmbTipoExamen"));
-        int condicion = Integer.parseInt(request.getParameter("cmbTipoCondicion"));
-
-        String sqlWhereTxt = "";
-
-        //Agragar las condiciones de filtrado nuevas
-//        if (!txtNombreAlumno.equals("")) {
-//            sqlWhereTxt += "and a.nombres like '" + txtNombreAlumno + "%' ";
-//        }
-//
-//        if (!txtApellidoAlumno.equals("")) {
-//            sqlWhereTxt += "and a.apellido like '" + txtApellidoAlumno + "%' ";
-//        }
-        if (idCategoriaSelected != 0) {
-            sqlWhereTxt += "and e.idCategoria = " + idCategoriaSelected + " ";
-        }
-
-//      Al venir los campos vacios o con valor 0 no los incluyo en el parametro del select.
-        if (!fechaDesde.equals("") && !fechaHasta.equals("")) {
-            sqlWhereTxt += "and e.fechaExamen between '" + fechaDesde + "' and '" + fechaHasta + "' ";
-        }
-        if (tipoExamen != 0) {
-            sqlWhereTxt += "and e.idTipoExamen = " + tipoExamen + " ";
-        }
-        if (condicion == 1) {
-            sqlWhereTxt += "and e.notaFinal >= 60";
-        }
-        if (condicion == 2) {
-            sqlWhereTxt += "and e.notaFinal < 60";
-        }
-
-        ArrayList<PruebasPromedioDTO> listaFiltrada = gestor.contarPruebaPromedioFiltrado(sqlWhereTxt);
-        session.setAttribute("listaExamenesGraficos", listaFiltrada);
-
-        
-
-//        String path = request.getContextPath();
-//        response.sendRedirect(path + "/vistaGraficoBarras.jsp");
-
-        RequestDispatcher rd = request.getRequestDispatcher("vistaGraficoBarras.jsp");
-        rd.forward(request, response);
-
+        processRequest(request, response);
     }
 
     /**

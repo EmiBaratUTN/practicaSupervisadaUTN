@@ -70,7 +70,7 @@
                 <br/>
                 <div class="row">
                     <div class="col-auto">
-                        <input class=" form-control btn btn-primary mb-2" type="submit" value="Aplicar filtros"/>
+                        <input class=" form-control btn btn-primary mb-2" type="submit" value="Generar Gráfico"/>
 
                     </div>
                     <div class="col-auto">

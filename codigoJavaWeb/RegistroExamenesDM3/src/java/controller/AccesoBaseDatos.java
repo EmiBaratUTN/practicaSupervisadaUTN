@@ -2177,7 +2177,7 @@ public class AccesoBaseDatos {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                String prueba = rs.getString("prueba");
+                String prueba = rs.getString("prueba").trim();
                 double promedio = rs.getDouble("promedio");
                 PruebasPromedioDTO pp = new PruebasPromedioDTO(prueba, promedio);
                 lista.add(pp);
