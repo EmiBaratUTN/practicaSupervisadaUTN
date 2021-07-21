@@ -80,10 +80,10 @@ public class ReportePeso extends HttpServlet {
             
             for (Pesaje item : listaReporte) {
                 pesaje = new PesajeBean();
-                pesaje.setNombreAlumno(item.getAlumno().getNombres() + item.getAlumno().getApellidos());
+                pesaje.setNombreAlumno(item.getAlumno().getNombres().trim() + " " + item.getAlumno().getApellidos().trim());
                 pesaje.setFechaPesaje(item.getFechaPesaje());
-                pesaje.setSituacion(item.getEstadoPeso().getDescripcion());
-                pesaje.setTratamiento(item.getObservaciones());
+                pesaje.setSituacion(item.getEstadoPeso().getDescripcion().trim());
+                pesaje.setTratamiento(item.getObservaciones().trim());
                 pesaje.setPesoKg(item.getPesoEnKilos());
                 pesaje.setImc(item.getIndiceMasaCorporal());
                 lista.add(pesaje);
